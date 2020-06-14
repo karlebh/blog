@@ -1,0 +1,12 @@
+body{
+	
+}
+
+footer{
+	background-color: green;
+	height: 300px;
+	border-top: 40px;
+	bottom: -100px;
+	position: relative;
+}
+

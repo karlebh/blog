@@ -31,7 +31,7 @@ Blog should only be used for learning purposes.
 
 ## Installation
 
-- Install (Update) the composer dependencies
+- Install (Update) the composer dependencies\
 	`composer install`
 
 - Install node modules\

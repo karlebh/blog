@@ -3,7 +3,7 @@
 
 Blog is a social media built with laravel with best practices in mind. It is constantly being updated with new and exicting features.
 
-Blog's functionalities includes:
+Blog's functionalities include:
 
 - User's Registration and login
 - User's Profile

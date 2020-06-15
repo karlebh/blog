@@ -43,7 +43,7 @@ Blog should only be used for learning purposes.
 
 - Install Laravel Scout
 
-- Install your favourite search provider, in my case I used tnt_search. You could use Algolia, or just search you database without any serach provider. Setup the `SCOUT_DRIVER` environment variable if you are using one.
+- Install your favourite search provider, in my case I used tnt_search. You could use Algolia, or just search you database without any search provider. Setup the `SCOUT_DRIVER` environment variable if you are using one.
 
 - Install Pusher and setup it's environment variable.
 

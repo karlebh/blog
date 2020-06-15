@@ -34,8 +34,8 @@ Blog should only be used for learning purposes.
 - Install (Upadate) the composer dependencies
 	`composer install`
 
-- Install node modules
-	`npm install`
+- Install node modules\
+	`npm install`\
 
 - Setup database
 
@@ -49,12 +49,12 @@ Blog should only be used for learning purposes.
 
 - Install and Setup Stripe's environment variables, in my case, I used Cashier.
 
-- Install the UI and Authentication Scalfolding.
-	`php artisan ui vue`
-	`php artisan ui auth`
+- Install the UI and Authentication Scalfolding.\
+	`php artisan ui vue`\
+	`php artisan ui auth`\
 
-- Install npm
-	`npm install && npm run dev`
+- Install npm\
+	`npm install && npm run dev`\
 
 - To seed it, use factory (Optional).
 

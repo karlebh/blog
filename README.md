@@ -32,10 +32,10 @@ Blog should only be used for learning purposes.
 ## Installation
 
 - Install (Upadate) the composer dependencies
-	'composer install'
+	'''composer install'''
 
 - Install node modules
-	'npm install'
+	'''npm install'''
 
 - Setup database
 
@@ -43,18 +43,18 @@ Blog should only be used for learning purposes.
 
 - Install Laravel Scout
 
-- Install your favourite search provider, in my case I used tnt_search. You could use Algolia, or just search you database without any serach provider. Setup the 'SCOUT_DRIVER' environment variable if you are using one.
+- Install your favourite search provider, in my case I used tnt_search. You could use Algolia, or just search you database without any serach provider. Setup the '''SCOUT_DRIVER''' environment variable if you are using one.
 
-- Install Pusher and setup it's environment variable.
+- Install Pusher and setup it'''s environment variable.
 
-- Install and Setup Stripe's environment variables, in my case, I used Cashier.
+- Install and Setup Stripe'''s environment variables, in my case, I used Cashier.
 
 - Install the UI and Authentication Scalfolding.
-	'php artisan ui vue'
-	'php artisan ui auth'
+	'''php artisan ui vue'''
+	'''php artisan ui auth'''
 
 - Install npm
-	'npm install && npm run dev'
+	'''npm install && npm run dev'''
 
 - To seed it, use factory (Optional).
 

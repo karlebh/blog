@@ -19,7 +19,6 @@
         "laravel/socialite": "^4.3",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
-        "livewire/livewire": "^1.1",
         "pusher/pusher-php-server": "~4.0",
         "teamtnt/laravel-scout-tntsearch-driver": "^8.3",
         "teamtnt/tntsearch": "^2.3"

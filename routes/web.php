@@ -45,6 +45,9 @@ Route::get('check/{id}', 'FriendController@check')->name('friend.check');
 
 Route::post('followPost/{post:id}', 'PostSubscription@subscribe');
 
+Route::get('login/github', 'Auth\LoginController@redirectToProvider')->name('github.login');
+Route::get('login/github/callback', 'Auth\LoginController@handleProviderCallback')->name('github.redirect');
+
 Route::get('unreadNots', function(){
 							return auth()->user()->unreadNotifications;
 									})->middleware('auth');

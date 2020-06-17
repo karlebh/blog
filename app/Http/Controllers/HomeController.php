@@ -51,6 +51,6 @@ class HomeController extends Controller
 
     public function users()
     {
-        return view('users')->with('users', \App\User::all());
+        return view('users')->with('users', \App\User::select('id', 'username', 'gender')->get());
     }
 }

@@ -45,7 +45,7 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'url' => 'http://blog.com',
+            'url' => '',
             'host' => 'blog.com',
             'port' => '3306',
             'database' => 'blog',

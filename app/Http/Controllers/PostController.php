@@ -41,60 +41,6 @@ class PostController extends Controller
         return view('posts.create', compact('categories'));
     }
 
-    public function show(Post $post, User $user)
-    {
-        $isLiked = (bool) $post->likes(['like' => 1])->first();
-        $comments = $post->comments()->paginate(10);
-
-        $follows =  (auth()->user()) ? auth()->user()->content->contains($post->id) : false;
-        // dd($follows);
-
-        View::logView($post);
-
-        $post->increment('views_count');
-      
-
-        return view('posts.show', compact('post', 'isLiked', 'comments', 'follows'));
-    }
-   
-    public function edit(Post $post)
-    {
-        $this->authorize('edit', $post);
-        return view('posts.edit', compact('post'));
-    }
-
-    public function update(Post $post, Request $request)
-    {
-        // $this->authorize('update', $post);
-
-      $data = request()->validate([
-            'category_id' => 'required',
-            'title' => 'required|unique:posts,title|min:2|max:255|string',
-            'desc' => 'required|string|min:2|max:10000',
-            'img' => 'image|nullable',
-        ]);
-
-        if($request->hasFile('img')){
-        $imagePath = $request->img->store('images', 'public');
-        }
-
-        $post = auth()->user()->posts()->update([
-                'user_id' => auth()->user()->id ?? '',
-                'category_id' => $data['category_id'],
-                'title' => $data['title'],
-                'desc' => $data['desc'],
-                'img' => $imagePath ?? '',
-                'comments_count' => 0,
-                'views_count' => 0,
-                'best_reply' => 0,
-                'locked' => false,
-                'pinned' => 0,
-
-        ]);
-
-        return redirect()->route('posts.show', compact('post'));
-        
-    }
 
    public function store(Request $request)
    {
@@ -131,6 +77,63 @@ class PostController extends Controller
         return redirect()->route('posts.show', compact('post'));
  
    }
+
+   
+    public function show(Post $post, User $user)
+    {
+        $isLiked = (bool) $post->likes(['like' => 1])->first();
+        $comments = $post->comments()->paginate(10);
+
+        $follows =  (auth()->user()) ? auth()->user()->content->contains($post->id) : false;
+        // dd($follows);
+
+        View::logView($post);
+
+        $post->increment('views_count');
+      
+
+        return view('posts.show', compact('post', 'isLiked', 'comments', 'follows'));
+    }
+   
+    public function edit(Post $post)
+    {
+        $this->authorize('edit', $post);
+        return view('posts.edit', compact('post'));
+    }
+
+    public function update(Post $post, Request $request)
+    {
+        $this->authorize('update', $post);
+
+      $data = request()->validate([
+            'category_id' => 'required',
+            'title' => 'required|unique:posts,title|min:2|max:255|string',
+            'desc' => 'required|string|min:2|max:10000',
+            'img' => 'image|nullable',
+        ]);
+
+        if($request->hasFile('img')){
+        $imagePath = $request->img->store('images', 'public');
+        }
+
+        $post = auth()->user()->posts()->update([
+                'user_id' => auth()->user()->id ?? '',
+                'category_id' => $data['category_id'],
+                'title' => $data['title'],
+                'desc' => $data['desc'],
+                'img' => $imagePath ?? '',
+                'comments_count' => 0,
+                'views_count' => 0,
+                'best_reply' => 0,
+                'locked' => false,
+                'pinned' => 0,
+
+        ]);
+    
+    return redirect()->route('posts.show', compact('post'));
+        
+    }
+
 
    public function destroy(Post $post)
    {

@@ -63,7 +63,7 @@ class CommentController extends Controller
                     'body' => $request->body,
             ]);
 
-        return redirect()->route('posts.show', $comment->commentable_id);
+        return redirect()->route('posts.show', $comment->commentable->slug);
 
     
     }

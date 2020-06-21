@@ -24,7 +24,7 @@
 		<br />
 		
 		@if($post->img)
-		<img src="/storage/{{$post->img}} ">
+		<img src="/storage/{{$post->img}} " class="w-25 h-25" style="object-fit: scale-down;">
 		@endif
 
 

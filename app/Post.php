@@ -13,7 +13,6 @@ class Post extends Model
         
     protected $guarded = [];
 
-    protected $table = 'posts';
 
     public function getRouteKeyName()
     {

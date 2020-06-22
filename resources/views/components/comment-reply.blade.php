@@ -8,6 +8,7 @@
 				By <a href="/profile/{{$comment->user->slug}}">{{ $comment->user->name }} </a>
 
 				 <span></span> {{$comment->created_at->diffForHumans()}}
+				 <a href="" style="font-size: 20px;" class="ml-2 text-success">#</a>
 			</div>
 			<div class="card-text">
 				{{$comment->body}}

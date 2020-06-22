@@ -7,12 +7,30 @@
 <div class="container">
 		<div class="jumbotron">
 			
-		<div><h2>{{ $post->title }}</h2></div>
-		<div><small>Posted by  
-		 <strong><a href="{{ route('profile.show', $post->user->slug) }}" >{{ $post->user->name }}</a></strong>
-		<span>   {{$post->created_at->diffForHumans()}}</span>
+		<div>
+			<h2>{{ $post->title }}
+				<a href="{{ $post->path }}" style="font-size: 25px;" class="ml-2 text-success">#</a> 
+			</h2>
+		 	
+		</div>
+		<div>
+			<small>Posted  
+			 <strong>
+			 	by 
+				 <a href="{{ route('profile.show', $post->user->slug) }}" >{{ $post->user->name }}</a>
+			 </strong>
 
-		</small>
+			<span> {{ $post->created_at->diffForHumans() }}</span> 
+
+			<strong>
+				<span>in</span>
+				<a href="{{ route('category.show', $post->category->slug) }}" >
+					{{ $post->category->name }}
+				</a>
+			</strong>
+			
+
+			</small>
 		<span class="float-right">
 			<follow-post postid="{{$post->id}}" follows="{{$follows}}" ></follow-post></span>
 		</div>
@@ -78,7 +96,7 @@
 					By <a href="/profile/{{$comment->user->slug}}">{{ $comment->user->name }} </a>
 
 					 <span></span> {{$comment->created_at->diffForHumans()}}
-					 <a href="" class="ml-2 text-lg-center">link</a>
+					 <a href="" style="font-size: 20px;" class="ml-2 text-success">#</a>
 				</div>
 				<div class="card-text">
 					{{$comment->body}}

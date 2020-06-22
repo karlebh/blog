@@ -33,7 +33,8 @@ class Comment extends Model
 
     public function path()
     {
-        $replyPosition = $this->commentable()->posts();
+        $comment = $this->commentable->comments->pluck('id')->search($this->id) + 1;
+        
     }
 
 }

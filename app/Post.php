@@ -13,6 +13,8 @@ class Post extends Model
         
     protected $guarded = [];
 
+    protected $appends = ['path'];
+
 
     public function getRouteKeyName()
     {
@@ -70,6 +72,16 @@ class Post extends Model
             $post->category()->increment('posts_count');
         });
 
+    }
+
+    public function path()
+    {
+        return route('posts.show', $this->slug);
+    }
+
+    public function getPathAttribute()
+    {
+        return $this->path();
     }
 
 

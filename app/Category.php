@@ -23,4 +23,10 @@ class Category extends Model
     	return $this->belongsTo(User::class);
     }
 
+    public function path()
+    {
+        return route('category.show', $this->slug );
+        // return '/category/' . $this->slug;
+    }
+
 }

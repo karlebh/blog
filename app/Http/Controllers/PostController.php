@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\View;
 use App\User;
 use App\Post;
 use App\Like;
@@ -85,9 +84,6 @@ class PostController extends Controller
         $comments = $post->comments()->paginate(10);
 
         $follows =  (auth()->user()) ? auth()->user()->content->contains($post->id) : false;
-        // dd($follows);
-
-        View::logView($post);
 
         $post->increment('views_count');
       

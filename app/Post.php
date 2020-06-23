@@ -49,11 +49,6 @@ class Post extends Model
         return $this->morphMany(Like::class, 'likeable');
     }
 
-    public function views()
-    {
-        return $this->morphMany(View::class, 'viewable');
-    }
-
     public function category()
     {
         return $this->belongsTo(Category::class);

@@ -27,6 +27,7 @@ class CommentController extends Controller
         
       $comment = Comment::firstOrCreate([
             'user_id' => auth()->user()->id,
+            'img' => $request->img ?? '',
             'commentable_id' => $request->commentable_id,
             'commentable_type' => Post::class,
             'body' => $request->body
@@ -46,11 +47,6 @@ class CommentController extends Controller
     { 
         $this->authorize('edit', $comment);
         return view('comment.edit', compact('comment'));
-    }
-
-    public function show(Comment $comment)
-    {
-        
     }
 
     /**

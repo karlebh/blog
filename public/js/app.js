@@ -7168,7 +7168,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nbutton[data-v-0cde541c]{\n\tposition: relative;\n\ttop: -7px;\n\tbackground-color: #41B883;\n\tcolor: white;\n\tborder: none;\n\toutline: none;\n\tpadding: 7px 8px;\n\tborder-radius: 5px;\n}\n", ""]);
+exports.push([module.i, "\nbutton[data-v-0cde541c]{\n\tposition: relative;\n\ttop: -7px;\n\tbackground-color: #41B883;\n\tcolor: white;\n\tborder: none;\n\toutline: none;\n\tpadding: 7px 8px;\n\tborder-radius: 5px;\n}\n@media screen and (max-width: 500px){\nbuttton[data-v-0cde541c]{\n\t\tpadding: 2px;\n\t\tbackground: red;\n}\n}\n", ""]);
 
 // exports
 
@@ -7206,7 +7206,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nbutton[data-v-36959c9e]{\n  outline: transparent;\n}\n", ""]);
+exports.push([module.i, "\nbutton[data-v-36959c9e]{\n  outline: none;\n}\n.btn .btn-link[data-v-36959c9e]{\n  outline: none;\n}\n\n\n", ""]);
 
 // exports
 
@@ -62678,8 +62678,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! c:\laragon\www\blog\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! c:\laragon\www\blog\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laragon\www\blog\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\blog\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

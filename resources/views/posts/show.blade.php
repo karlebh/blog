@@ -47,6 +47,9 @@
 	
 	@endif
 
+	
+	@can('view', $post)
+
 	<like
 
 	 :id = "{{ $post->id }}"
@@ -55,8 +58,10 @@
 	 	
 	 </like>
 
+	@endcan	
 
 	@can('edit', $post)
+
 	<post-noty :id="{{$post->user_id}}"></post-noty>
 	<div class="well">
 
@@ -69,10 +74,12 @@
 			<button type="submit"  class="btn btn-link">
 				Delete
 			</button>
+
+	@endcan
+	
 		</form>
 		
 	</div>
-	@endcan	
 </div>
 
 

@@ -4,7 +4,7 @@
 
 <div class="container">
 	
-	<ul>
+	<ul class="m-auto w-75">
 		@forelse($categories as $category)
 			<li>
 				<a href="/category/{{$category->slug}}">{{$category->name}}</a>
@@ -25,7 +25,7 @@
 		<br>
 
 
-	<p>
+	<p class="text-center">
 		<a href="{{route('category.create')}}">Create new unique category!</a>
 	</p>
 

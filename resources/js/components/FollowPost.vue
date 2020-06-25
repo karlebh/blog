@@ -50,4 +50,13 @@
 		padding: 7px 8px;
 		border-radius: 5px;
 	}
+
+	@media screen and (max-width: 500px){
+		buttton{
+			padding: 2px;
+			background: red;
+
+
+		}
+	}
 </style>

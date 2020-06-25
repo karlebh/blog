@@ -84,6 +84,12 @@
 
 <style scoped>
   button{
-    outline: transparent;
+    outline: none;
   }
+
+  .btn .btn-link{
+    outline: none;
+  }
+
+
 </style>

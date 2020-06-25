@@ -15,14 +15,20 @@ class CommentPolicy
      *
      * @return void
      */
+
+    public function view()
+    {
+      return auth()->user();
+    }
+
   	public function edit(User $user, Comment $comment)
   	{
   		return $user->id === $comment->user_id;
   	}
 
-	public function update(User $user, Comment $comment)
-  	{
-  		return $user->id === $comment->user_id;
-  	}
+  	public function update(User $user, Comment $comment)
+    	{
+    		return $user->id === $comment->user_id;
+    	}
 
 }

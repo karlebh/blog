@@ -62,15 +62,13 @@
                                 <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{route('posts.create')}}">Create Post</a>
 
+                                <a class="dropdown-item" href="{{route('posts.index')}}">Posts</a>
+
                                 <a class="dropdown-item" href="{{route('category.create')}}">Create Category</a>
                                 <!-- <hr> -->
                                 
                                 <!-- <hr> -->
                                 <a class="dropdown-item" href="{{ route('users') }}">All Users</a>
-                                <a class="dropdown-item" href="{{ route('nots')}}">
-                                <unread></unread>
-                                </a>
-
                                 </div>
                             </li>
                                 
@@ -78,7 +76,9 @@
                         
 
                         <li class="nav-item">
-                           <a class="dropdown-item" href="{{route('posts.index')}}">Posts</a>
+                           <a class="dropdown-item" href="{{ route('nots')}}">
+                             <unread></unread>
+                            </a>
                         </li>
 
                         <li class="nav-item">

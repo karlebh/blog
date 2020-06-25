@@ -17,7 +17,7 @@ $factory->define(Post::class, function (Faker $faker) {
         'title' => $faker->sentence,
         'desc'=> $text,
         'slug' => trim(Str::limit(Str::slug($text), 50, ''), '-'),
-        'img'=> $faker->image('public/storage/images/', 640,480, null, false),
+        'img'=> $faker->image('public/storage/images/', 640, 480, 'cats'),
         'comments_count' => random_int(20, 100),
         'views_count' => random_int(20, 100),
         'best_reply' => 0,

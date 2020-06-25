@@ -22,7 +22,7 @@ class CreateCommentsTable extends Migration
             $table->text('body');
             $table->integer('parent_id')->nullable();
             $table->integer('replies_count')->default(0)->nullable();
-            $table->string('img');
+            $table->string('img')->nullable();
             $table->integer('commentable_id');
             $table->string('commentable_type');
             $table->timestamps();

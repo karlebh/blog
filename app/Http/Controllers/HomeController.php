@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 
 class HomeController extends Controller
@@ -44,13 +45,16 @@ class HomeController extends Controller
 
     public function feed()
     {
-        $friends = auth()->user()->allFriends();
+        $friendss = auth()->user()->allFriends();
 
-        return view('home.hello', compact('friends'));
+        return view('home.hello', compact('friendss'));
     }
 
     public function users()
     {
-        return view('users')->with('users', \App\User::select('id', 'username', 'gender')->get());
+        return view('users')->with(
+            'users', \App\User::select('id', 'username', 'gender', 'slug', 'created_at')
+                ->where('id', '!=', auth()->user()->id)
+                ->paginate(20));
     }
 }

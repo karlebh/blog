@@ -1,6 +1,6 @@
 <div class="container">
 	@forelse($comments as $comment)
-	<div class="card p-0">
+	<div class="card p-0 mb-5">
 
 		<div class="card-body">
 			<div class="card-title">
@@ -18,11 +18,15 @@
 
 	<div class="row pl-4">
 
+	 	@can('view', $comment)
+
 		<like-comment  :id="{{ $comment->id }}" ></like-comment>
 
-		<a class="pr-3 " href="{{ route('reply.comment', $comment->id) }}">reply</a>
 
-	 	@can('edit', $comment)
+		<a class="pl-3 pr-3 " href="{{ route('reply.comment', $comment->id) }}">reply</a>
+		@endcan
+
+		@can('edit', $comment)
 
 	 	<a class="pr-3" href="{{route('comments.edit', $comment->id)}}">edit</a>
 	 	<form class="d-inline mt-n2" action="{{route('comments.destroy', $comment->id)}}" method="POST">
@@ -35,6 +39,7 @@
 		<span style="margin-left: 9px">
 			
 		</span>
+		
 	 	@endcan
 
 	 </div> 

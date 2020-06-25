@@ -58,6 +58,8 @@ Blog should only be used for learning purposes.
 
 - To seed it, use factory (Optional).
 
+-Run `php artisan queue:work`
+
 - Learn! 
 
 

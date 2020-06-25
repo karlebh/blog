@@ -5,13 +5,12 @@
 
 
 <div class="container">
-@php
-print_r($friendss)
-
-@endphp
-{{-- @foreach ($friendss->posts as $friend)
+	@foreach($followedPosts as $post)
+		{{$post}}
+	@endforeach
+ @foreach ($friendss as $friend)
 	{{ $friend }}
-@endforeach --}}
+@endforeach 
 
 
 </div>

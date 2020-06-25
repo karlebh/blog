@@ -8,11 +8,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use App\Traits\Friendable;
-// use Laravel\Scout\Searchable;
+use Laravel\Scout\Searchable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable, Friendable, Billable, CanResetPassword;
+    use Searchable, Notifiable, Friendable, Billable, CanResetPassword;
 
     /**
      * The attributes that are mass assignable.
@@ -71,4 +71,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany('App\Category');
     }
 
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
   }

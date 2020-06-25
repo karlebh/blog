@@ -92,7 +92,7 @@ trait Friendable
 		foreach($secondSet as $friend):
 			// array_push($friends, 
 			// 	User::with('posts', 'categories')->findOrFail($friend->requester));
-			array_push($friends, collect(User::with('posts', 'categories')->select('name','slug')->where('id', $friend->requester)->get()));
+			array_push($friends, collect(User::select('name','slug')->where('id', $friend->requester)->get()));
 		endforeach;
 
 		return $friends;

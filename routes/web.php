@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'PostController@index');
 
-Route::get('posts/page/{page?}', 'PostController@index');
 Route::resource('posts', 'PostController');
 
 Route::resource('category', 'CategoryController');
@@ -46,7 +45,13 @@ Route::get('check/{id}', 'FriendController@check')->name('friend.check');
 Route::post('followPost/{post:id}', 'PostSubscription@subscribe');
 
 Route::get('login/github', 'Auth\LoginController@redirectToProvider')->name('github.login');
-Route::get('login/github/callback', 'Auth\LoginController@handleProviderCallback')->name('github.redirect');
+Route::get('login/github/callback', 'Auth\LoginController@handleProviderCallback')
+		->name('github.redirect');
+
+
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
+		Route::get('home', 'HomeController@index');
+});
 
 Route::get('unreadNots', function(){
 							return auth()->user()->unreadNotifications;

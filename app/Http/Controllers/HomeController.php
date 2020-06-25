@@ -47,7 +47,9 @@ class HomeController extends Controller
     {
         $friendss = auth()->user()->allFriends();
 
-        return view('home.hello', compact('friendss'));
+        $followedPosts = auth()->user()->content()->get();
+
+        return view('home.hello', compact('friendss', 'followedPosts'));
     }
 
     public function users()
@@ -55,6 +57,7 @@ class HomeController extends Controller
         return view('users')->with(
             'users', \App\User::select('id', 'username', 'gender', 'slug', 'created_at')
                 ->where('id', '!=', auth()->user()->id)
+                ->latest()
                 ->paginate(20));
     }
 }

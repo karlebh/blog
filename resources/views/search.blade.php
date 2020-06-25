@@ -12,7 +12,7 @@
 
 
 	@forelse($results as $result)
-	<!-- {{ $result }} -->
+	
 	<div class="card mb-1">
 		<div class="card-body">
 			<div class="card-title">
@@ -39,8 +39,9 @@
 	
 	@endforelse
 
+		{{ $results->appends(request('q')->query())->links()}}
 
-	{{ $results->links() }}
+
 
 
 	</div>

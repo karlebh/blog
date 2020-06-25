@@ -4,7 +4,10 @@
 
 		<div class="card-body">
 			<div class="card-title">
-				By <a href="/profile/{{$comment->user->slug}}">{{ $comment->user->name }} </a>
+				By
+				<a href="/profile/{{$comment->user->slug}}">
+					{{ $comment->user->name }}
+				</a>
 
 				 <span></span> {{$comment->created_at->diffForHumans()}}
 				 <a href="" style="font-size: 20px;" class="ml-2 text-success">#</a>
@@ -23,18 +26,38 @@
 		<like-comment  :id="{{ $comment->id }}" ></like-comment>
 
 
-		<a class="pl-3 pr-3 " href="{{ route('reply.comment', $comment->id) }}">reply</a>
+		<a 
+		class="pl-3 pr-3 "
+		href="{{ route('reply.comment', $comment->id) }}"
+		>
+		reply
+		</a>
+
 		@endcan
 
 		@can('edit', $comment)
 
-	 	<a class="pr-3" href="{{route('comments.edit', $comment->id)}}">edit</a>
-	 	<form class="d-inline mt-n2" action="{{route('comments.destroy', $comment->id)}}" method="POST">
-		@csrf
-		@method('DELETE')
-		<button type="submit"  class="btn btn-link">
+	 	<a 
+	 	class="pr-3" 
+	 	href="{{route('comments.edit', $comment->id)}}"
+	 	>
+	 	edit
+	 	</a>
+
+	 	<form 
+	 	class="d-inline mt-n2" 
+	 	action="{{route('comments.destroy', $comment->id)}}" 
+	 	method="POST"
+	 	>
+			@csrf
+			@method('DELETE')
+		<button 
+		type="submit"  
+		class="btn btn-link"
+		>
 			delete
 		</button>
+
 		</form>
 		<span style="margin-left: 9px">
 			
@@ -47,7 +70,10 @@
 			</div>
 		</div>
 	</div>
-		<x-comment-reply identify="replies" :replies="$comment->replies" />
+		<x-comment-reply 
+		identify="replies" 
+		:replies="$comment->replies" 
+		/>
 
 	@empty
 	<div class="card">

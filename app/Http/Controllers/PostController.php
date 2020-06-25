@@ -24,7 +24,7 @@ class PostController extends Controller
     public function index()
     {
 
-        $posts = Post::paginate(30);
+        $posts = Post::OrderBy('created_at', 'desc')->paginate(30);
         
         // Cache::put('users', $cahe)
         // $posts = Cache::get('users');
@@ -99,34 +99,28 @@ class PostController extends Controller
 
     public function update(Post $post, Request $request)
     {
+
         $this->authorize('update', $post);
 
-      $data = request()->validate([
+        $data = request()->validate([
             'category_id' => 'required',
-            'title' => 'required|unique:posts,title|min:2|max:255|string',
+            'title' => 'required|min:2|max:255|string',
             'desc' => 'required|string|min:2|max:10000',
             'img' => 'image|nullable',
         ]);
 
         if($request->hasFile('img')){
         $imagePath = $request->img->store('images', 'public');
+            $imageArray = ['img' => $imagePath];
         }
 
-        $post = auth()->user()->posts()->update([
-                'user_id' => auth()->user()->id ?? '',
-                'category_id' => $data['category_id'],
-                'title' => $data['title'],
-                'desc' => $data['desc'],
-                'img' => $imagePath ?? '',
-                'comments_count' => 0,
-                'views_count' => 0,
-                'best_reply' => 0,
-                'locked' => false,
-                'pinned' => 0,
-
+        $others = array_merge($data, [
+            'slug' => trim(Str::limit(Str::slug($data['title']), 50, ''), '-'), 
         ]);
-    
-    return redirect()->route('posts.show', compact('post'));
+
+        $post->update(array_merge($others,  $imageArray ?? []));
+        
+         return redirect()->route('posts.show', compact('post'));
         
     }
 

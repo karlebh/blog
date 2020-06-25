@@ -32,6 +32,9 @@
       background-color:  aliceblue;
       height: 100%;
     }
+    btn, btn:active, btn:hover, btn-success, btn-primary, btn-danger, btn-secondary{
+    outline: none;
+    }
   </style>
 </head>
 <body >
@@ -51,7 +54,7 @@
                         
                         @auth()
                          <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="dropdown-item py-1 px-4 dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                  <span class="caret"></span> Menu
                                 </a>
                         

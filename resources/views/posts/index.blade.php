@@ -20,8 +20,6 @@
 		
 		<p><a href="{{ route('posts.create') }}">Create new post!</a></p>
 		@endcan
-
-		<x-home :posts="$posts" />
 </div>
 
 @endsection

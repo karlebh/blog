@@ -14,9 +14,7 @@
 
 					 on <a href="{{ route('posts.show', $comment->commentable->slug) }}">{{$comment->commentable->title}}</a>
 				</div>
-				<div class="card-text">
-
-
+				<div class="card-body text-secondary">
 					<p>{{$comment->body}}</p>
 					</div>
 					<br>

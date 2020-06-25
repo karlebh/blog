@@ -3,7 +3,11 @@
 @section('content')
 
 <div class="container">
-	<p>Search Results for <strong>{{request()->input('q')}}</strong></p>
+	<p>
+		@if($results->count() > 0) <strong>{{$results->count()}}</strong> @else No @endif
+		
+		Search Results for <strong>{{request()->input('q')}}</strong></p>
+
 	<br />
 
 
@@ -34,7 +38,9 @@
 	</div>
 	
 	@endforelse
-	{{ $results->appends(request()->input('q'))->links()}}
+
+
+	{{ $results->links() }}
 
 
 	</div>

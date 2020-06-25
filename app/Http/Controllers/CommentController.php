@@ -48,6 +48,11 @@ class CommentController extends Controller
         return view('comment.edit', compact('comment'));
     }
 
+    public function show(Comment $comment)
+    {
+        
+    }
+
     /**
      * Update the specified resource in storage.
      *

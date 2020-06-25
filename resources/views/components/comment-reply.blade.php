@@ -19,11 +19,17 @@
 		 	@can('edit', $comment)
 
 		 	<a class="pr-3" href="{{route('comments.edit', $comment->id)}}">edit</a>
-		 	<a  href="{{route('comments.destroy', $comment->id)}}">delete</a>
-			<sapn style="margin-left: 9px">
+		 	<form class="d-inline mt-n2" action="{{route('comments.destroy', $comment->id)}}" method="POST">
+			@csrf
+			@method('DELETE')
+			<button type="submit"  class="btn btn-link">
+				delete
+			</button>
+			</form>
+			<span style="margin-left: 9px">
 				
 			<like-comment  :id="{{ $comment->id}}" ></like-comment>
-			</sapn>
+			</span>
 		 	@endcan
 
 		 </div> 

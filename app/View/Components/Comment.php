@@ -4,17 +4,17 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class home extends Component
+class Comment extends Component
 {
-    public $posts;
+    public $comments;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($posts)
+    public function __construct($comments)
     {
-        $this->posts = $posts;
+        $this->comments = $comments;
     }
 
     /**
@@ -24,6 +24,6 @@ class home extends Component
      */
     public function render()
     {
-        return view('components.home');
+        return view('components.comment');
     }
 }

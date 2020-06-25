@@ -10,6 +10,12 @@
 					<textarea class="form-control" name="body" row="10" cols="10">
 						{{$comment->body}}
 					</textarea>
+
+					 @error('body')
+			          <span class="invalid-feedback" role="alert">
+			              <strong>{{ $message }}</strong>
+			          </span>
+				      @enderror
 				</div>
 
 				<div class="form-group ">

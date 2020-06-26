@@ -11,6 +11,7 @@
 		<p>{{$category->desc}}</p>
 	</div>
 
+<br><br>
 		
 <form method="post" action="{!! route('posts.store') !!}" enctype="multipart/form-data" >
 
@@ -28,6 +29,16 @@
                   <strong>{{ $message }}</strong>
               </span>
           @enderror
+    </div>
+
+    <div class="float-right w-25 pr-5">
+      <h3 style="color: #41B883;">
+        {{$category->views_count}} Views
+      </h3>
+
+      <h2 style="color: #41B883;">
+        {{$category->posts_count}} Posts
+      </h2>
     </div>
     
     <div class="form-group col-md-6">

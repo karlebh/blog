@@ -15,6 +15,11 @@ class Roles extends Migration
     {
         Schema::create('roles', function(Blueprint $table){
             $table->id();
+            $table->unsignedBigInteger('user_id')
+                    ->references('id')
+                    ->on('user')
+                    ->onDelete('cascade')
+                    ->nullable();
             $table->string('name');
             $table->string('value');
         });

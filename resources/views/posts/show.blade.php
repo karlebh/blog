@@ -78,7 +78,13 @@
 	@endcan
 	
 		</form>
+
+		<br><br>
 		
+		<span style="color: #41B883;" class="mr-3">{{$post->views_count}} views</span> 
+
+		<span style="color: #41B883;">{{$post->comments_count}} comments</span>
+
 	</div>
 </div>
 

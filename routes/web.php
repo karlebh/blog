@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/', 'PostController@index');
+Route::get('/', 'PostController@index')->name('home');
 
 Route::resource('posts', 'PostController');
 
@@ -24,7 +24,7 @@ Route::get('users', 'HomeController@users')->name('users');
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index');
 Route::get('nots', 'HomeController@nots')->name('nots');
 Route::get('search', 'HomeController@search')->name('search');
 Route::get('feed', 'HomeController@feed')->name('feed')->middleware('auth');
@@ -49,7 +49,9 @@ Route::get('login/github/callback', 'Auth\LoginController@handleProviderCallback
 		->name('github.redirect');
 
 
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
+Route::group(
+	['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admin'],
+	 function(){
 		Route::get('home', 'HomeController@index');
 });
 

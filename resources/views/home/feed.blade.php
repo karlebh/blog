@@ -4,15 +4,18 @@
 
 
 
+
 <div class="container">
-	@foreach($followedPosts as $post)
-		{{$post}}
-	@endforeach
- @foreach ($friendss as $friend)
-	{{ $friend }}
-@endforeach 
+	 @foreach ($friends as $friend)
+	
+		<div class="bg-white p-4 mb-4 ">
+			<div class="m-auto w-50">
+				{{$friend}}
+			</div>
+		
+		</div>
 
-
+	@endforeach  
 </div>
 
 @yield('extra')

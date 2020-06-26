@@ -45,11 +45,9 @@ class HomeController extends Controller
 
     public function feed()
     {
-        $friendss = auth()->user()->allFriends();
+        $friends = auth()->user()->allFriends();
 
-        $followedPosts = auth()->user()->content()->get();
-
-        return view('home.hello', compact('friendss', 'followedPosts'));
+        return view('home.hello', compact('friends'));
     }
 
     public function users()
@@ -58,6 +56,6 @@ class HomeController extends Controller
             'users', \App\User::select('id', 'username', 'gender', 'slug', 'created_at')
                 ->where('id', '!=', auth()->user()->id)
                 ->latest()
-                ->paginate(20));
+                ->simplePaginate(20));
     }
 }

@@ -31,8 +31,10 @@
 		</div>
 
 	@endforeach
-
+	<div class="m-auto w-25">
+		
 	{{ $users->links()}}
+	</div>
 
 </div>
 

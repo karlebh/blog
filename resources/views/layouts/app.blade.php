@@ -35,6 +35,12 @@
     btn, btn:active, btn:hover, btn-success, btn-primary, btn-danger, btn-secondary{
     outline: none;
     }
+    text-green{
+        color: #41B883;
+    }
+    bg-green{
+        background: #41B883;
+    }
   </style>
 </head>
 <body >

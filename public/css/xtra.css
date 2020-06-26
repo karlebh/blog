@@ -10,3 +10,10 @@ footer{
 	position: relative;
 }
 
+text-green{
+	color: #41B883;
+}
+
+bg-green{
+	background-color: #41B883;
+}

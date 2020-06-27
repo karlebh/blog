@@ -30,7 +30,6 @@
       body{
       background-size: cover;
       background-color:  aliceblue;
-      height: 100%;
     }
     btn, btn:active, btn:hover, btn-success, btn-primary, btn-danger, btn-secondary{
     outline: none;
@@ -43,7 +42,7 @@
     }
   </style>
 </head>
-<body >
+<body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -110,7 +109,7 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                             <li class="nav-item mr-4">
-                            <form method="get" action="{{ route('search')}}">
+                            <form class="form pt-3" method="get" action="{{ route('search')}}">
                                 
                             <div class="input-group">
                               <input type="text" name="q" class="form-control" placeholder="Search...">
@@ -173,8 +172,6 @@
 </body>
 @auth
 <script>
-Window.user = @json(auth()->user())
-
 </script>
 @yield('js')
 @endauth

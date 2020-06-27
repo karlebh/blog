@@ -2,7 +2,7 @@
 
 
 @section('content')
-<div class="container">
+<div class="container px-4">
 	@forelse($posts as $post)
 		<div class="row"><a href="{{ route('posts.show', $post->slug) }}" >{{ $post->desc }}</a></div>
 

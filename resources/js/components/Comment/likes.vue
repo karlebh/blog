@@ -10,8 +10,6 @@
 			</span>
 
 		</div>
-
-			
 	</div>
 </template>
 

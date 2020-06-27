@@ -38,14 +38,17 @@ class HomeController extends Controller
         if(strlen($request->q) < 3){
             return back()->with('q', $request->q);
         }
+        $query = $request->q;
 
-        $results = \App\Post::search($request->q)->paginate(10);
+        $results = \App\Post::search($query)->paginate();
         return view('search', compact('results'));
     }
 
     public function feed()
     {
-        $friends = auth()->user()->allFriends();
+        $friends = collect(auth()->user()->allFriends());
+
+        // $friends = collect(\App\User::whereIn('id', $all));
 
         return view('home.hello', compact('friends'));
     }

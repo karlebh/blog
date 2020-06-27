@@ -6,6 +6,7 @@ use Closure;
 
 class Admin
 {
+    
     /**
      * Handle an incoming request.
      *
@@ -20,7 +21,8 @@ class Admin
         if(
             !$request->user() || 
             !$request->user()->roles->contains($role->findOrFail(1)->value > 2
-        ) )
+            ) 
+        )
         {
             return redirect()->route('home');
         }

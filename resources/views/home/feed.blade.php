@@ -7,15 +7,19 @@
 
 <div class="container">
 	 @foreach ($friends as $friend)
-	
+		@foreach ($friend->posts as $feed)
+			
 		<div class="bg-white p-4 mb-4 ">
 			<div class="m-auto w-50">
-				{{$friend}}
+				{{$feed}}
 			</div>
 		
 		</div>
+		@endforeach
 
 	@endforeach  
+
+	{{-- {{ $friends->email }} --}}
 </div>
 
 @yield('extra')

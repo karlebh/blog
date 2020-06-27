@@ -4,7 +4,7 @@
 
 <div class="container">
 	<p>
-		@if($results->count() > 0) <strong>{{$results->count()}}</strong> @else No @endif
+		@if($results->count() > 0) <strong>{{ $results->total() }}</strong> @else No @endif
 		
 		Search Results for <strong>{{request()->input('q')}}</strong></p>
 
@@ -39,7 +39,8 @@
 	
 	@endforelse
 
-		{{ $results->appends(request('q')->query())->links()}}
+		{{-- {{ $results->appends(request()->query())->links()}} --}}
+		{{ $results->appends(Request::toArray())->links()}}
 
 
 

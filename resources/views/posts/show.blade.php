@@ -5,10 +5,11 @@
 
 
 <div class="container">
-		<div class="jumbotron">
+	<div class="jumbotron">
 		
 	<div>
-		<h2>{{ $post->title }}
+		<h2>
+			{{ $post->title }}
 			<a href="{{ $post->path }}" style="font-size: 25px;" class="ml-2 text-success">#</a> 
 		</h2>
 	 	
@@ -38,6 +39,7 @@
 	<span class="float-right">
 		<follow-post postid="{{$post->id}}" follows="{{$follows}}" ></follow-post></span>
 	</div>
+	
 	<br>
 	<div>{{ $post->desc }}</div>
 	

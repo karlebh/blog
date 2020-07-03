@@ -13,7 +13,7 @@ trait Friendable
 			
 			if($friend = $this->storeFriend($requestee))
 			{
-				return response()->json($friend, 200);
+				return $friend;
 			}	
 		
 		}
@@ -28,7 +28,7 @@ trait Friendable
 							->first();
 		if($friend){
 			$this->updateFriend($friend, $requester);
-			return response()->json($friend, 200);
+			return $friend;
 		}
 		
 		return response()->json('Not Okay');

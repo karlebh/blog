@@ -7,7 +7,10 @@
 
 	<div>
 		<p>
+			<b>
+				
 			Account Information
+			</b>
 		</p>
 
 		<ul>
@@ -19,24 +22,24 @@
 				{{ $user->username }} <i>(Username)</i>
 			</li>
 			<li>
-				@if ($user->gender == 0)
+				@if ($user->profile && $user->gender == 0)
 					Female
 				@endif
 				Male
 			</li>
 			<li>
-				{{$data->location}} <i>(Location) </i>
+				{{$data->location ?? ""}} <i>(Location) </i>
 			</li>
 
 			<li>
-				{{$data->about}} <i>(About) </i>
+				{{$data->about ?? ""}} <i>(About) </i>
 			</li>
 		</ul>
 		<span>
 
 		</span>
 	</div>
-		@if ($data->picture)	
+		@if ($data->picture ?? "")	
 		<img 
 			src="/storage/{{$user->profile->picture}}" 
 			alt="Profile Picture" 

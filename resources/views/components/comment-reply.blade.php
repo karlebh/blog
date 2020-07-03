@@ -19,7 +19,12 @@
 		 	@can('edit', $comment)
 
 		 	<a class="pr-3" href="{{route('comments.edit', $comment->id)}}">edit</a>
-		 	<form class="d-inline mt-n2" action="{{route('comments.destroy', $comment->id)}}" method="POST">
+		 	<form 
+		 		class="d-inline mt-n2" 
+		 		action="{{route('comments.destroy', $comment->id)}}" 
+		 		method="POST"
+		 	>
+		 	
 			@csrf
 			@method('DELETE')
 			<button type="submit"  class="btn btn-link">

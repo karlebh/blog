@@ -1,7 +1,9 @@
 <template>
 	<div>
-		<p>Notifications
-			<span class="badge">{{ notsCount }}</span></p>
+		<span>
+		Notifications
+			<span class="badge">{{ notsCount }}</span>
+		</span>
 	</div>
 </template>
 

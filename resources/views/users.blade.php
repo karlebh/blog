@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
 	
-	@foreach($users as $user)
+	@forelse($users as $user)
 		
 		<div>
 			<div class="bg-white p-4 mb-4 ">
@@ -29,8 +29,15 @@
 	
 			</div>
 		</div>
+	@empty
+		<div class="bg-white p-4 mb-4 ">
+			<p>
+				You are the only user!
+			</p>
+		</div>
 
-	@endforeach
+
+	@endforelse
 	<div class="m-auto w-25">
 		
 	{{ $users->links()}}

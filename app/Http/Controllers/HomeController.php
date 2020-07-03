@@ -30,7 +30,9 @@ class HomeController extends Controller
     public function nots()
     {
         auth()->user()->unreadNotifications->markAsRead();
-        return view('notify')->with('nots', auth()->user()->notifications);
+        $nots = auth()->user()->notifications;
+        
+        return view('notify', compact('nots'));
     }
 
     public function search(Request $request)

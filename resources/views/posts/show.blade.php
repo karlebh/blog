@@ -17,7 +17,11 @@
 		<small>Posted  
 		 <strong>
 		 	by 
-			 <a href="{{ route('profile.show', $post->user->slug) }}" >{{ $post->user->name }}</a>
+			 <a 
+			 	href="{{ route('profile.show', $post->user->slug) }}" 
+			 >
+			 	{{ $post->user->name }}
+			</a>
 		 </strong>
 
 		<span> {{ $post->created_at->diffForHumans() }}</span> 

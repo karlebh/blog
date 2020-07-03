@@ -16,7 +16,8 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
             \App\Events\NewUserRegistered::class => [
-            \App\Listeners\CreateNewProfile::class],
+            \App\Listeners\CreateNewProfile::class
+        ],
 
             \App\Events\Friend::class => [
             \App\Listeners\FriendListener::class, ]

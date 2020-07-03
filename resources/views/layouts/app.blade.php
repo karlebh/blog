@@ -82,7 +82,19 @@
 
                         <li class="nav-item">
                            <a class="dropdown-item" href="{{ route('nots')}}">
-                             <unread></unread>
+                             {{-- <unread ></unread> --}}
+                             Notifications
+                             @if(auth()->user()->unreadNotifications->count() > 0) 
+                             <span 
+                             {{-- class="text-white p-1 rounded bg-danger"  --}}
+                             class="badge"
+                             style="background: #FF0000; color: white;"
+                             >
+                                 <strong>
+                                         {{auth()->user()->unreadNotifications->count()}}
+                                        </strong>
+                                    </span>
+                            @endif 
                             </a>
                         </li>
 
@@ -130,9 +142,19 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a 
+                                    id="navbarDropdown" 
+                                    class="nav-link dropdown-toggle" 
+                                    href="#" 
+                                    role="button" 
+                                    data-toggle="dropdown" 
+                                    aria-haspopup="true" 
+                                    aria-expanded="false" 
+                                    v-pre
+                                >
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
+                                
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('profile.show', auth()->user()->slug ) }}" >
                                        {{ __('Profile') }}

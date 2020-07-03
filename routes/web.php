@@ -14,6 +14,8 @@ Route::resource('comments', 'CommentController');
 Route::get('comment/{comment}/reply', 'ReplyController@edit')->name('reply.comment');
 Route::post('comment', 'ReplyController@store')->name('reply.store');
 
+Route::post('profile/update', 'ProfileController@update')->name('profile.update');
+
 Route::post('likeComment', 'LikeController@likeComment');
 Route::post('unlikeComment', 'LikeController@unlikeComment');
 Route::post('checkComment', 'LikeController@check');

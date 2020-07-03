@@ -20,11 +20,6 @@ trait Friendable
 		return response()->json('Not Okay');
 	}
 
-	public function deleteFriend()
-	{
-		
-	}
-
 	public function acceptFriend($requester)
 	{
 		$friend = Friend::where('requester', $requester)
@@ -75,6 +70,7 @@ trait Friendable
 
 	public function allFriends()
 	{
+
 		$friends = [];
 
 		$firstSet = Friend::where('requester', $this->id)
@@ -206,5 +202,25 @@ trait Friendable
 			'requestee' => $this->id,
 			'status' => 1,
 			]);
+	}
+
+	public function findFriendships()
+	{
+		
+		$f = collect(Friend::where(function($query){
+					$query->whereRequester($this->id)
+				 	 ->orWhere(function ($q) {
+				 	 	$q->whereRequestee($this->id);
+				  });
+		})->get());
+
+		$g = array_unique(
+				array_merge(
+						(array) $f->pluck('requester')->all(), 
+						(array) $f->pluck('requestee')->all()
+				)
+		);
+
+		return $this->with('posts')->whereIn('id', $g)->get();
 	}
 }

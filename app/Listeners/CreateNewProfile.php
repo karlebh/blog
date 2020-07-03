@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Event\NewUserRegistered;
+use App\Events\NewUserRegistered;
 use App\Profile;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -23,7 +23,6 @@ class CreateNewProfile implements ShouldQueue
     {
         Profile::create([
             'user_id' => $event->user->id,
-            'slug'    => Str::slug($event->user->username),
         ]);
     }
 }

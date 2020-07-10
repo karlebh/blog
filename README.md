@@ -51,7 +51,7 @@ Blog should only be used for learning purposes.
 
 - Install the UI and Authentication Scalfolding.\
 	`php artisan ui vue`\
-	`php artisan ui auth`
+	`php artisan ui:auth`
 
 - Install npm\
 	`npm install && npm run dev`

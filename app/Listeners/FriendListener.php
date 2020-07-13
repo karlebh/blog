@@ -5,7 +5,8 @@ namespace App\Listeners;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class FriendListener implements ShouldQueue
+class FriendListener 
+implements ShouldQueue
 {
     /**
      * Create the event listener.

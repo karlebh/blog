@@ -19,6 +19,11 @@
 
 	</ul>
 
+
+	<div class="m-auto w-25 ml-5">
+		{{ $categories->links() }}
+	</div>
+
 		<br>
 		<br>
 		<br>

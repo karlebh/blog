@@ -33,8 +33,13 @@
 
 	<div class="form-group col-md-6">
       <label for="color">Color in any format</label>
-      <input type="text" 
-      class="form-control @error('color') is-invalid @enderror" value="{{ old('color') }}" name="color" placeholder="Enter a unique color">
+      <input 
+        type="color" 
+        class="form-control @error('color') is-invalid @enderror" 
+        value="{{ old('color') }}" 
+        name="color" 
+        placeholder="Enter a unique color"
+      >
       @error('color')
           <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>

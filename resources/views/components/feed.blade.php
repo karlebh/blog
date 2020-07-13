@@ -1,6 +1,9 @@
 <div class="container">
+	<div class="text-center">
 
-	<h4 class="text-center text-success">Posts I am following!</h4>
+		<h4 class="text-success d-inline-block mr-3">Posts I am following</h4>
+		
+	</div>
     
     
 

@@ -8,51 +8,69 @@
 	<div>
 		<p>
 			<b>
-				
 			Account Information
 			</b>
 		</p>
 
-		<ul>
-			<li>
-				{{$user->name}}
-			</li>
+		<div>
+			<div>
+				<span>
+					<i class="fa fa-info mr-1" aria-hidden="true"></i>
+					<span>{{$user->name}} </span>	
+				</span>
+				
+				<span class="ml-2">
+					<i class="fa fa-user mr-1" aria-hidden="true"></i>
+					<span> {{ $user->username }} </span>
+				</span>
+			</div>
 
-			<li>
-				{{ $user->username }} <i>(Username)</i>
-			</li>
-			<li>
-				@if ($user->profile && $user->gender == 0)
-					Female
+			<div>
+				<span>
+					@if ($user->profile && $user->gender == 0)
+					<i class="fa fa-female mr-1" aria-hidden="true"></i>
+					<span>Female</span>
+					@endif
+					<i class="fa fa-male mr-1" aria-hidden="true"></i>
+					<span>Male</span>
+				</span>
+				
+				@if($data->location)
+					<span style="margin-left: 1.75rem">
+						<i class="fa fa-map-marker ml-2" aria-hidden="true"></i>
+						<span> {{$data->location ?? ""}} </span>
+					</span>
 				@endif
-				Male
-			</li>
-			<li>
-				{{$data->location ?? ""}} <i>(Location) </i>
-			</li>
-
-			<li>
-				{{$data->about ?? ""}} <i>(About) </i>
-			</li>
-		</ul>
+			</div>
+			
+			<div>
+				<span>
+					@if($data->about)
+						<i class="fa fa-check" aria-hidden="true"></i>
+						<span> {{$data->about ?? ""}} </span>
+					@endif
+				</span>
+			</div>
+			
+		</div>
 		<span>
 
 		</span>
 	</div>
-		@if ($data->picture ?? "")	
-		<img 
-			src="/storage/{{$user->profile->picture}}" 
-			alt="Profile Picture" 
-			width="200" 
-			height="200"
-			style="
-				object-fit: contain;
-				margin-left: 30px;
-				" 
-		/>
+
+	<div class="py-5 ">
+		@if ($data->picture)	
+			<img 
+				src="/storage/{{$user->profile->picture}}" 
+				alt="Profile Picture" 
+				width="200" 
+				height="200"
+				style="
+					object-fit: contain;
+					margin-left: 30px;
+					" 
+			/>
 		@endif
-
-
 	</div>
 
 
@@ -90,7 +108,7 @@
 			         type="file" 
 			         name="picture" 
 			         class="form-control @error('picture') is-invalid @enderror" 
-			         value="{{$data->picture}}" 
+			         value="{{$data->picture ?? ''}}" 
 			         accept="image/*"
  					>
  					@error('picture')
@@ -110,12 +128,12 @@
 					<input 
 						type="text"
 						class="form-control @error('location') is-invalid @enderror"
-						value="{{$data->location}}" 
+						value="{{$data->location ?? ''}}" 
 						name="location" 
 						placeholder="Location?" 
 					/>
 					@error('location')
-	              <span 
+	             	<span 
 	              		class="invalid-feedback" 
 	              		role="alert"
 	              	>
@@ -131,7 +149,7 @@
 					<input 
 						type="text"
 						class="form-control @error('about') is-invalid @enderror"
-						value="{{$data->about}}" 
+						value="{{$data->about ?? ''}}" 
 						name="about" 
 						placeholder="Write about yourself" 
 					/>
@@ -146,6 +164,7 @@
 	       		@enderror
 					
 				</div>	
+						{{$data->DOB}}
 
 				<div class="form-group">
 
@@ -153,7 +172,7 @@
 					<input 
 						type="date"
 						class="form-control @error('DOB') is-invalid @enderror"
-						value="{{$data->DOB}}" 
+						value="{{$data->DOB ?? ''}}" 
 						name="DOB" 
 						placeholder="Write about yourself" 
 					/>

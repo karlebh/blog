@@ -2193,8 +2193,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['id', 'count', 'liked'],
   data: function data() {
@@ -7206,7 +7204,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nbutton[data-v-36959c9e]{\n  outline: none;\n}\n.btn .btn-link[data-v-36959c9e]{\n  outline: none;\n}\n\n\n", ""]);
+exports.push([module.i, "\nbutton[data-v-36959c9e]{\n   background: none !important;\n   border: none;\n   padding: 0 !important;\n   cursor: pointer;\n   outline: transparent;\n   color: #3490dc;\n}\nbutton[data-v-36959c9e]:hover{\n   text-decoration: underline;\n}\n", ""]);
 
 // exports
 
@@ -44780,7 +44778,6 @@ var render = function() {
       ? _c(
           "button",
           {
-            staticClass: "btn btn-link",
             on: {
               click: function($event) {
                 $event.preventDefault()
@@ -44793,7 +44790,6 @@ var render = function() {
       : _c(
           "button",
           {
-            staticClass: "btn btn-link",
             on: {
               click: function($event) {
                 $event.preventDefault()
@@ -62686,8 +62682,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! c:\laragon\www\blog\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! c:\laragon\www\blog\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laragon\www\blog\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\blog\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

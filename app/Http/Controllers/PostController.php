@@ -14,11 +14,11 @@ use App\Notifications\PostNoty;
 
 class PostController extends Controller
 {
-
-    // public function __construct()
-    // {
-    //     return $this->middleware('auth');
-    // }
+    
+    public function __construct()
+    {
+        return $this->middleware('auth')->except('index', 'show');
+    }
 
 
     public function index()
@@ -49,7 +49,7 @@ class PostController extends Controller
             'category_id' => 'required',
             'title' => 'required|unique:posts,title|min:2|max:255|string',
             'desc' => 'required|string|min:2|max:5000',
-            'img' => 'image',
+            'img' => 'image|nullable',
         ]);
 
         if($request->hasFile('img')){
@@ -110,7 +110,7 @@ class PostController extends Controller
         ]);
 
         if($request->hasFile('img')){
-        $imagePath = $request->img->store('images', 'public');
+            $imagePath = $request->img->store('images', 'public');
             $imageArray = ['img' => $imagePath];
         }
 

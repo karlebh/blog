@@ -94,34 +94,63 @@
 	</div>
 </div>
 
+	<details open class="container mb-">
+		<summary
+			class="bg-white px-4 py-3 mb-4 border-light" 
+		>Add Comments Here!</summary>
 
-	<div class="container" >
-		<span></span>
-		<span></span>
-		<span></span>
-		<form class="form" method="post" enctype="multipart/form-data" action="{{route('comments.store')}}" >
+	<div>
+		<span class="mb-3"></span>
+		
+		<form 
+			class="form" 
+			method="post" 
+			enctype="multipart/form-data" 
+			action="{{route('comments.store')}}"
+		>
 			@csrf
+
 			<div class="form-group">
-				<textarea class="form-control area" name="body" row="10" cols="10"></textarea>
+				<textarea 
+					class="form-control @error('body') is-invalid @enderror"
+					name="body" 
+					row="10" 
+					cols="10"
+				></textarea>
+
+				@error('body')
+		          <span class="invalid-feedback" role="alert">
+		             <strong>{{ $message }}</strong>
+		          </span>
+			    @enderror
 			</div>
+
 			<input type="hidden" name="commentable_id" value="{{$post->id}}">
 			<input type="hidden" name="parent_id" value="{{$comment->id ?? ''}}">
 
-		<div class="form-group col-md-6">
-		     <input type="file" name="img" class="form-control @error('img') is-invalid @enderror" value="{{ old('img') }}" accept="image/*">
+			<div class="form-group col-md-6 my-4 py-3">
+			    <input 
+				    type="file" 
+				    name="img" 
+				    class="form-control @error('img') is-invalid @enderror" 
+				    value="{{ old('img') }}" 
+				    accept="image/*"
+			    >
 
-		      @error('img')
-		              <span class="invalid-feedback" role="alert">
-		                  <strong>{{ $message }}</strong>
-		              </span>
-		       @enderror
-   		 </div>
+		     @error('img')
+	            <span class="invalid-feedback" role="alert">
+	              <strong>{{ $message }}</strong>
+	            </span>
+		     @enderror
+   			</div>
 
 			<div class="form-group ">
 				<input type="submit" name="comment" value="Add Comment" class="btn btn-success">
 			</div>
 		</form>
 	</div>
+	</details>
+	
 
 	<x-comment :comments="$comments"></x-comment>
 

@@ -9,6 +9,11 @@ use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
+   
+    public function __construct()
+    {
+        return $this->middleware('auth')->except('index', 'show');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +21,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::paginate(20);
+        $categories = Category::paginate(25);
 
         return view('category.index', compact('categories'));
 
@@ -29,7 +34,6 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        
         return view('category.create');
     }
 

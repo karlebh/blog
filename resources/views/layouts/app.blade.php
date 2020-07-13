@@ -9,6 +9,14 @@
 
     <title>Blog</title>
 
+    <!-- Font Awesome -->
+    <script 
+    src="https://use.fontawesome.com/releases/v5.13.1/js/all.js" 
+    integrity="sha384-heKROmDHlJdBb+n64p+i+wLplNYUZPaZmp2HZ4J6KCqzmd33FJ8QClrOV3IdHZm5" 
+    crossorigin="anonymous"
+    defer
+    ></script>
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/xtra.js') }}" defer></script>

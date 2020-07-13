@@ -13,10 +13,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth')->only('users', 'feed', 'nots');
+    }
     /**
      * Show the application dashboard.
      *
@@ -59,7 +59,6 @@ class HomeController extends Controller
     {
         return view('users')->with(
             'users', \App\User::select('id', 'username', 'gender', 'slug', 'created_at')
-                ->where('id', '!=', auth()->user()->id)
                 ->latest()
                 ->simplePaginate(20));
     }

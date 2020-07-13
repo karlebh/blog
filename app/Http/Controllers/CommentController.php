@@ -13,7 +13,6 @@ class CommentController extends Controller
     {
         return $this->middleware('auth');
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -21,18 +20,29 @@ class CommentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        // $this->authorize('edit', $comment);
+    {        
+        $data = $request->validate([
+            'img' => 'image|nullable',
+            'body' => 'required|string'
+        ]);
         
-        
-      $comment = Comment::firstOrCreate([
+        if($request->img){
+            $img = $request->img->store('/images/comments', 'public');
+            $imgArray = ['img' => $img];
+        }
+        $others = [
             'user_id' => auth()->user()->id,
-            'img' => $request->img ?? '',
             'commentable_id' => $request->commentable_id,
             'commentable_type' => Post::class,
             'body' => $request->body
-        ]);
-      $comment->commentable()->increment('comments_count');
+        ];
+
+        $all = array_merge(
+            $data, $imageArray ?? [], $others
+        );
+
+        $comment = Comment::firstOrCreate($all);
+        $comment->commentable()->increment('comments_count');
 
         return back();  
     }
@@ -77,6 +87,7 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
+        $this->authorize('update', $comment);
         $comment->delete();
         return back();
     }

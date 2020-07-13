@@ -3,7 +3,6 @@
   <div>
     <button
       v-if="isLiked"
-      class="btn btn-link"
       @click.prevent="unlike"
     >
       unlike
@@ -12,7 +11,6 @@
 
       <button
       v-else
-      class="btn btn-link"
       @click.prevent="like"
     >
       like
@@ -83,13 +81,16 @@
 </script>
 
 <style scoped>
-  button{
-    outline: none;
+ button{
+    background: none !important;
+    border: none;
+    padding: 0 !important;
+    cursor: pointer;
+    outline: transparent;
+    color: #3490dc;
   }
 
-  .btn .btn-link{
-    outline: none;
+  button:hover{
+    text-decoration: underline;
   }
-
-
 </style>

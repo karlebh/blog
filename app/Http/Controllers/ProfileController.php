@@ -9,25 +9,11 @@ use App\Profile;
 
 class ProfileController extends Controller
 {
-    // public function __construct()
-    // {
-    // 	return $this->middleware('auth');
-    // }
+    public function __construct()
+    {
+    	return $this->middleware('auth')->only('update');
+    }
 
-	// public function index()
-	// {
-
-	// }
-
-	// public function create()
-	// {
-
-	// }
-
-	// public function store()
-	// {
-
-	// }
 
     public function show(User $user)
     {
@@ -36,10 +22,6 @@ class ProfileController extends Controller
     	return view('Profile.show', compact('user', 'data'));
     }
 
-    public function edit()
-    {
-
-    }
 
     public function update(Request $request, User $user)
     {
@@ -64,13 +46,8 @@ class ProfileController extends Controller
 
     	auth()->user()->profile()->update(array_filter($all));
 
-
     	return back();
 
     }
 
-    public function delete()
-    {
-
-    }
 }

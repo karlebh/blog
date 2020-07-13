@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
 	
-	@forelse($users as $user)
+	@foreach($users as $user)
 		
 		<div>
 			<div class="bg-white p-4 mb-4 ">
@@ -24,20 +24,15 @@
 					</strong>
 				</span>
 
-				<friending class="pt-4" :userId=" {{ $user->id}} "></friending>
-				</div>
-	
+				@if(auth()->user()->id != $user->id)
+					<friending class="pt-4" :userId=" {{ $user->id}} "></friending>
+				@endif
+
+					</div>
 			</div>
 		</div>
-	@empty
-		<div class="bg-white p-4 mb-4 ">
-			<p>
-				You are the only user!
-			</p>
-		</div>
+	@endforeach
 
-
-	@endforelse
 	<div class="m-auto w-25">
 		
 	{{ $users->links()}}

@@ -83,10 +83,7 @@
                                 <!-- <hr> -->
                                 <a class="dropdown-item" href="{{ route('users') }}">All Users</a>
                                 </div>
-                            </li>
-                                
-                    
-                        
+                        </li>
 
                         <li class="nav-item">
                            <a class="dropdown-item" href="{{ route('nots')}}">
@@ -113,10 +110,28 @@
                          <li class="nav-item">
                            <a class="dropdown-item" href="{{route('subscription.index')}}">Subscriptions</a>
                         </li> --}}
-
-                        <li class="nav-item">
-                           <a class="dropdown-item" href="{{route('feed')}}">Feed</a>
+                         
+                        <li class="nav-item dropdown">
+                                <a 
+                                    id="navbarDropdown" 
+                                    class="dropdown-item py-1 px-4 dropdown-toggle" 
+                                    href="#" role="button" 
+                                    data-toggle="dropdown" 
+                                    aria-haspopup="true" 
+                                    aria-expanded="false" 
+                                    v-pre
+                                >
+                                 <span class="caret"></span> Feed
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Liked Posts</a>
+                                    <a class="dropdown-item" href="{{route('feed')}}">Followed Posts</a>
+                                    <a class="dropdown-item" href="#">Friends Posts</a>
+                                </div>
                         </li>
+
+                         
+                       
                         @endauth
                                                     
 

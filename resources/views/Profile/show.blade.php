@@ -35,20 +35,17 @@
 					<span>Male</span>
 				</span>
 				
-				@if($data->location)
+				@if($user->profile)
 					<span style="margin-left: 1.75rem">
 						<i class="fa fa-map-marker ml-2" aria-hidden="true"></i>
-						<span> {{$data->location ?? ""}} </span>
+						<span> {{$user->profile->location ?? ""}} </span>
 					</span>
-				@endif
 			</div>
 			
 			<div>
 				<span>
-					@if($data->about)
 						<i class="fa fa-check" aria-hidden="true"></i>
-						<span> {{$data->about ?? ""}} </span>
-					@endif
+						<span> {{$user->profile->about ?? ""}} </span>
 				</span>
 			</div>
 			
@@ -59,7 +56,6 @@
 	</div>
 
 	<div class="py-5 ">
-		@if ($data->picture)	
 			<img 
 				src="/storage/{{$user->profile->picture}}" 
 				alt="Profile Picture" 
@@ -70,7 +66,6 @@
 					margin-left: 30px;
 					" 
 			/>
-		@endif
 	</div>
 
 
@@ -87,8 +82,8 @@
 
 
 
-	@if(auth()->user() && auth()->user()->id === $user->id)
-	<details class="w-75 border-0" style="outline: none; border-color: inherit;">
+	{{-- @if(auth()->user() && auth()->user()->id === $user->id) --}}
+	<detail class="w-75 border-0" style="outline: none; border-color: inherit;">
 
 		<summary>
 			Update profile
@@ -108,7 +103,7 @@
 			         type="file" 
 			         name="picture" 
 			         class="form-control @error('picture') is-invalid @enderror" 
-			         value="{{$data->picture ?? ''}}" 
+			         value="{{$user->profile->picture ?? ''}}" 
 			         accept="image/*"
  					>
  					@error('picture')
@@ -128,7 +123,7 @@
 					<input 
 						type="text"
 						class="form-control @error('location') is-invalid @enderror"
-						value="{{$data->location ?? ''}}" 
+						value="{{$user->profile->location ?? ''}}" 
 						name="location" 
 						placeholder="Location?" 
 					/>
@@ -149,7 +144,7 @@
 					<input 
 						type="text"
 						class="form-control @error('about') is-invalid @enderror"
-						value="{{$data->about ?? ''}}" 
+						value="{{$user->profile->about ?? ''}}" 
 						name="about" 
 						placeholder="Write about yourself" 
 					/>
@@ -164,7 +159,7 @@
 	       		@enderror
 					
 				</div>	
-						{{$data->DOB}}
+						{{$user->profile->DOB}}
 
 				<div class="form-group">
 
@@ -172,7 +167,7 @@
 					<input 
 						type="date"
 						class="form-control @error('DOB') is-invalid @enderror"
-						value="{{$data->DOB ?? ''}}" 
+						value="{{$user->profile->DOB ?? ''}}" 
 						name="DOB" 
 						placeholder="Write about yourself" 
 					/>
@@ -184,7 +179,8 @@
 	                  <strong>{{ $message }}</strong>
 	              </span>
 	       		@enderror
-					
+				   
+				@endif	
 				</div>
 
 				<input 
@@ -195,8 +191,8 @@
 
 
 			</form>
-	</details>
-	@endif
+	</detail>
+	{{-- @endif --}}
 
 	</div>
 

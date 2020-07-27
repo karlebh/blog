@@ -31,7 +31,7 @@ class FriendableTest extends TestCase
     Event::fake();
     $response = $this->actingAs($this->user)
                         ->get('/addFriend/'. $this->user2->id);
-                        $response->assertStatus(200);
+                        $response->assertStatus(201);
                         $response->assertJsonFragment(['status' => 0]);
     $this->assertCount(1, Friend::all());
    } 
@@ -63,10 +63,11 @@ class FriendableTest extends TestCase
    /** @test */
    public function a_friend_can_be_accepted()
    {
+    $this->withoutExceptionHandling();
     Event::fake();
     $this->actingAs($this->user)
                         ->get('/addFriend/'. $this->user2->id)
-                        ->assertStatus(200)
+                        ->assertStatus(201)
                         ->assertJsonFragment(['status' => 0]);
     $this->assertCount(1, Friend::all());
 
@@ -85,7 +86,7 @@ class FriendableTest extends TestCase
     Event::fake();
     $this->actingAs($this->user)
                         ->get('/addFriend/'. $this->user2->id)
-                        ->assertStatus(200)
+                        ->assertStatus(201)
                         ->assertJsonFragment(['status' => 0]);
     $this->assertCount(1, Friend::all());
 
@@ -93,12 +94,6 @@ class FriendableTest extends TestCase
                         ->get('/declineFriend/'. $this->user->id)
                         ->assertOk();
     $this->assertCount(0, Friend::all());
-   }
-
-   /** @test */
-   public function a_user_can_be_unfriended()
-   {
-    
    }
 
 

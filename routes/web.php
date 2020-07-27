@@ -15,6 +15,7 @@ Route::get('comment/{comment}/reply', 'ReplyController@edit')->name('reply.comme
 Route::post('comment', 'ReplyController@store')->name('reply.store');
 
 Route::post('profile/update', 'ProfileController@update')->name('profile.update');
+Route::get('profile/{user:slug}', 'ProfileController@show')->name('profile.show');
 
 Route::post('likeComment', 'LikeController@likeComment');
 Route::post('unlikeComment', 'LikeController@unlikeComment');
@@ -37,7 +38,6 @@ Route::post('unlike', 'LikeController@unlike')->name('like.delete');
 Route::get('auth_user', function(){return auth()->user();})->middleware('auth');
 
 
-Route::get('profile/{user:slug}', 'ProfileController@show')->name('profile.show');
 
 Route::get('addFriend/{id}', 'FriendController@add')->name('friend.add');
 Route::get('acceptFriend/{id}', 'FriendController@accept')->name('friend.accept');
@@ -57,10 +57,15 @@ Route::group(
 		Route::get('home', 'HomeController@index');
 });
 
-Route::get('unreadNots', function(){
-							return auth()->user()->unreadNotifications;
-									})->middleware('auth');
+
+Route::get('postsILiked', 'HomeController@postsUserLiked')->name('postsILiked');
+Route::get('commentsILiked', 'HomeController@commentsUserLiked')->name('commentsILiked');
 
 
-Route::get('show', function(){ return \App\User::find(1)->friendsId();});
-Route::get('pag', function(){ return phpinfo();});
+// Route::get('unreadNots', function(){
+// 							return auth()->user()->unreadNotifications;
+// 									})->middleware('auth');
+
+
+// Route::get('show', function(){ return \App\User::find(1)->friendsId();});
+// Route::get('pag', function(){ return phpinfo();});

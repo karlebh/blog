@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Like;
 use Auth;
 use App\Post;
+use App\Comment;
 
 class LikeController extends Controller
 {
@@ -42,15 +43,14 @@ class LikeController extends Controller
 
     public function unlike(Request $request)
     {
-        $like = Like::where('user_id', Auth::id())
+        $like = Like::where('user_id', auth()->user()->id)
                         ->where('like', 1)
                         ->where('dislike', 0)
                         ->where('likeable_id', $request->id)
                         ->where('likeable_type', Post::class)
                         ->orderBy('created_at', 'desc')
-                        ->first();
-
-        $like->delete();
+                        ->first()
+                        ->delete();
 
     }
     

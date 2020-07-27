@@ -9,7 +9,11 @@ class Friend extends Model
 {
     use Friendable;
 
-    protected $fillable = ['requester', 'requestee','status'];
+    protected $fillable = [
+                        'requester', 
+                        'requestee', 
+                        'status'
+                        ];
 
 
 }

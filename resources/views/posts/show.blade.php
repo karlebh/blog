@@ -94,10 +94,10 @@
 	</div>
 </div>
 
-	<details open class="container mb-">
+	<details open class="container mb-3" >
 		<summary
 			class="bg-white px-4 py-3 mb-4 border-light" 
-		>Add Comments Here!</summary>
+		>Toggle comment box</summary>
 
 	<div>
 		<span class="mb-3"></span>

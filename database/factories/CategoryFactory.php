@@ -13,7 +13,7 @@ $factory->define(Category::class, function (Faker $faker) {
         'name' => $faker->name,
         'slug' => Str::limit(Str::slug($desc), 10, ''),
         'desc' => $desc,
-        'color' => "rgba(".random_int(1, 225).", " .random_int(1, 225) .", ". random_int(1, 225). ", ". random_int(0, 1) . " )",
+        'color' => '#' . random_int(000000, 999999),
         'posts_count' => random_int(300, 500),
         'views_count' => random_int(100, 500),
     ];

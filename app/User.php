@@ -2,7 +2,7 @@
 
 namespace App;
 
-use Laravel\Cashier\Billable;
+
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -12,7 +12,7 @@ use Laravel\Scout\Searchable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Searchable, Notifiable, Friendable, Billable, CanResetPassword;
+    use Searchable, Notifiable, Friendable, CanResetPassword;
 
     /**
      * The attributes that are mass assignable.

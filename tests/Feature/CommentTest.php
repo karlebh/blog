@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Post;
+use App\Like;
 use App\Comment;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -67,9 +68,48 @@ class CommentTest extends TestCase
                 'user_id' => $user->id,
                     ])
                 ])->assertStatus(403);
+    }
+
+
+    /** @test */
+    public function a_comment_can_be_liked()
+    {
+      
+      $comment = factory('App\Comment')->create()->toArray();
+      $like = factory('App\Like')->create([
+                                    'likeable_id' => $comment['id'],
+                                    'likeable_type' => 'App\Comment',
+          ])->toArray();
+
+      $this
+          ->actingAs(factory('App\User')->create())
+          ->post('/likeComment', $like)
+          ->assertOk();
 
     }
 
+    // /** @test */
+    // public function a_comment_can_not_be_liked_more_than_once()
+    // {
+
+    //   $user = factory('App\User')->create();
+    //   try{
+    //       $this
+    //             ->actingAs($user)
+    //             ->post('/likeComment');
+      
+    //         $this
+    //             ->actingAs($user)
+    //             ->post('/likeComment');
+            
+    //     }catch(\Exception $e){
+    //         $this->fail('Can\'t like a comment twice');
+    //     }
+
+    //   $this->assertCount(1, Like::all());
+    // }
+
+    
 
 
 

@@ -55,7 +55,7 @@ class RegisterController extends Controller
         $messages = ['gender.integer' => 'Select a gender'];
         return Validator::make($data, [
             'name' => ['required', 'string', 'min:4', 'max:255'],
-            'username' => ['required', 'string', 'min:4', 'max:255',],
+            'username' => ['required', 'string', 'unique:users', 'min:4', 'max:255',],
             'gender' => ['required', 'integer'],
             'email' => ['required', 'string', 'email', 'max:255',],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
@@ -81,7 +81,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
-        event(new NewUserRegistered($user));
+        // event(new NewUserRegistered($user));
 
         return $user;
     }

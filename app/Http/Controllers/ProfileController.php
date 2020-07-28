@@ -25,7 +25,7 @@ class ProfileController extends Controller
     {
     	$data = request()->validate([
             'location' => 'string|nullable',
-    		'picture' => 'image|nullable',
+    		'picture' => 'image|nullable|max:10240',
     		'about' =>  'string|nullable',
     		'DOB' => 'date|nullable',
     	]);

@@ -9,6 +9,10 @@ use App\Http\Resources\User as UserResource;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware('auth');
+    }
 
     public function index()
     {
@@ -36,4 +40,16 @@ class UserController extends Controller
 
     	return response()->json('User deleted');
     }
+
+    public function searchUser(Request $request)
+    {
+        if(strlen($request->q) < 3){
+            return back()->with('q', $request->q);
+        }
+        $query = $request->q;
+
+        $results = User::search($query)->paginate();
+        return view('user.search', compact('results'));
+    }
+
 }

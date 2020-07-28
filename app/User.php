@@ -40,6 +40,12 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+        return $array;
+    }
+    
     public function posts()
     {
         return $this->hasMany('App\Post');
@@ -74,5 +80,16 @@ class User extends Authenticatable implements MustVerifyEmail
     public function roles()
     {
         return $this->belongsToMany(Role::class);
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::created(function($user){
+            $user->profile()->create([
+              'user_id' => $user->id,  
+            ]);
+        });
     }
   }

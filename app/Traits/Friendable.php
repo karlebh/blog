@@ -23,7 +23,7 @@ trait Friendable
 	public function acceptFriend($requester)
 	{
 		$friend = Friend::where('requester', $requester)
-							->where('requestee', $this->id)
+							->where('requestee', auth()->user()->id)
 							->where('status', 0)
 							->first();
 		if($friend){
@@ -38,7 +38,7 @@ trait Friendable
 	public function declineFriend($requester)
 	{
 		$friend = Friend::where('requester', $requester)
-							->where('requestee', $this->id)
+							->where('requestee', auth()->user()->id)
 							->where('status', 0)
 							->first();
 		if(is_null($friend)):
@@ -53,7 +53,7 @@ trait Friendable
 	public function unfriend($requester)
 	{
 		$friend = Friend::where('requester', $requester)
-							->where('requestee', $this->id)
+							->where('requestee', auth()->user()->id)
 							->where('status', 1)
 							->first();
 		if($friend){
@@ -73,7 +73,7 @@ trait Friendable
 
 		$friends = [];
 
-		$firstSet = Friend::where('requester', $this->id)
+		$firstSet = Friend::where('requester', auth()->user()->id)
 							->where('status', 1)
 							->get();
 
@@ -81,7 +81,7 @@ trait Friendable
 			array_push($friends, User::findOrFail($friend->requestee));
 		endforeach;
 
-		$secondSet = Friend::where('requestee', $this->id)
+		$secondSet = Friend::where('requestee', auth()->user()->id)
 							->where('status', 1)
 							->get();
 
@@ -98,7 +98,7 @@ trait Friendable
 	{
 		$all = [];
 
-		$pendingRequests = Friend::where('requestee', $this->id)
+		$pendingRequests = Friend::where('requestee', auth()->user()->id)
 									->where('status', 0)
 									->get();
 
@@ -119,7 +119,7 @@ trait Friendable
 		$all = [];
 
 		$pendingRequests = Friend::where('status', 0)
-									->where('requester', $this->id)
+									->where('requester', auth()->user()->id)
 									->get();
 
 		foreach($pendingRequests as $pending):
@@ -174,19 +174,19 @@ trait Friendable
 	{
 
 		return Friend::where('requestee', $requestee)
-					->where('requester', $this->id)
+					->where('requester', auth()->user()->id)
 					->where('status', 0)
 					->first();
 	}
 
 	public function storeFriend($requestee)
 	{
-		if($requestee === $this->id):
+		if($requestee === auth()->user()->id):
 			return;
 		endif;
 		
 		return Friend::create([
-			'requester' => $this->id,
+			'requester' => auth()->user()->id,
 			'requestee' => $requestee,
 			'status' => 0,
 		]);
@@ -194,12 +194,12 @@ trait Friendable
 
 	public function updateFriend($friend, $requester)
 	{
-		if($requester === $this->id):
+		if($requester === auth()->user()->id):
 			return;
 		endif;
 		return $friend->update([
 			'requester' => $requester,
-			'requestee' => $this->id,
+			'requestee' => auth()->user()->id,
 			'status' => 1,
 			]);
 	}
@@ -208,9 +208,9 @@ trait Friendable
 	{
 		
 		$f = collect(Friend::where(function($query){
-					$query->whereRequester($this->id)
+					$query->whereRequester(auth()->user()->id)
 				 	 ->orWhere(function ($q) {
-				 	 	$q->whereRequestee($this->id);
+				 	 	$q->whereRequestee(auth()->user()->id);
 				  });
 		})->get());
 

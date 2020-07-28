@@ -30,7 +30,6 @@ Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index');
 Route::get('nots', 'HomeController@nots')->name('nots');
 Route::get('search', 'HomeController@search')->name('search');
-Route::get('feed', 'HomeController@feed')->name('feed')->middleware('auth');
 
 
 Route::post('like', 'LikeController@like')->name('like.create');
@@ -57,9 +56,13 @@ Route::group(
 		Route::get('home', 'HomeController@index');
 });
 
+Route::get('searchUser', 'UserController@searchUser')->name('searchUser');
+Route::view('searchResults', 'users.search');
 
-Route::get('postsILiked', 'HomeController@postsUserLiked')->name('postsILiked');
-Route::get('commentsILiked', 'HomeController@commentsUserLiked')->name('commentsILiked');
+Route::get('likedPosts', 'FeedController@likedPosts')->name('likedPosts');
+Route::get('friendsPosts', 'FeedController@friendsPosts')->name('friendsPosts');
+Route::get('followedPosts', 'FeedController@followedPosts')->name('followedPosts');
+// Route::get('likedComments', 'FeedController@likedComments')->name('likedComments');
 
 
 // Route::get('unreadNots', function(){

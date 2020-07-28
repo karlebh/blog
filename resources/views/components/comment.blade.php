@@ -23,7 +23,7 @@
 
 			@if($comment->img)
 				<img 
-					src="/storage/comments/{{$comment->img}} " 
+					src="/storage/{{$comment->img}} " 
 					class="w-25 h-25" 
 					style="object-fit: scale-down;"
 				>

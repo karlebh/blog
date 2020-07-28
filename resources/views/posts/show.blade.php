@@ -60,7 +60,8 @@
 
 	 :id = "{{ $post->id }}"
 	 :liked = "{{ $isLiked ? 'true' : 'false' }}"
-	 :count = "{{ $post->likes()->count() }}">
+	 :count = "{{ $post->likes()->count() }}"
+	 >
 	 	
 	 </like>
 

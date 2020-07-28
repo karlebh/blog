@@ -54,7 +54,7 @@
                                 <select name="gender" class="form-control @error('gender') is-invalid @enderror" value="{{ old('gender') }}" required autocomplete="gender" autofocus="">
                                     <option >Choose</option>
                                     <option value="1">Male</option>
-                                    <option value="0">Femal</option>
+                                    <option value="0">Female</option>
                                 </select>
 
                                 @error('gender')

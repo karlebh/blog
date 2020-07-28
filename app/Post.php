@@ -26,6 +26,7 @@ class Post extends Model
         $array = $this->toArray();
         return $array;
     }
+    
     public function user()
     {
     	return $this->belongsTo(User::class);

@@ -48,6 +48,7 @@
 						<span> {{$user->profile->about ?? ""}} </span>
 				</span>
 			</div>
+			@endif
 			
 		</div>
 		<span>
@@ -56,6 +57,7 @@
 	</div>
 
 	<div class="py-5 ">
+		@if($user->profile->picture)
 			<img 
 				src="/storage/{{$user->profile->picture}}" 
 				alt="Profile Picture" 
@@ -66,6 +68,7 @@
 					margin-left: 30px;
 					" 
 			/>
+		@endif
 	</div>
 
 
@@ -76,14 +79,16 @@
 	<p><friending :userId=" {{ $user->id}} "></friending></p>
 	
 	@endif
+
+	
 	<p><notify :id=" {{ $user->id }} "></notify></p>
 	
 	<div>
 
 
 
-	{{-- @if(auth()->user() && auth()->user()->id === $user->id) --}}
-	<detail class="w-75 border-0" style="outline: none; border-color: inherit;">
+	@if(auth()->user() && auth()->user()->id === $user->id)
+	<details>
 
 		<summary>
 			Update profile
@@ -100,11 +105,11 @@
 					<label for="Picture">Picture (Optional)</label>
 						
 					<input 
-			         type="file" 
-			         name="picture" 
-			         class="form-control @error('picture') is-invalid @enderror" 
-			         value="{{$user->profile->picture ?? ''}}" 
-			         accept="image/*"
+				         type="file" 
+				         name="picture" 
+				         class="form-control @error('picture') is-invalid @enderror" 
+				         value="{{$user->profile->picture ?? ''}}" 
+				         accept="image/*"
  					>
  					@error('picture')
 	              <span 
@@ -159,7 +164,7 @@
 	       		@enderror
 					
 				</div>	
-						{{$user->profile->DOB}}
+						{{$user->profile->DOB ?? ""}}
 
 				<div class="form-group">
 
@@ -180,7 +185,7 @@
 	              </span>
 	       		@enderror
 				   
-				@endif	
+				{{-- @endif	 --}}
 				</div>
 
 				<input 
@@ -191,8 +196,8 @@
 
 
 			</form>
-	</detail>
-	{{-- @endif --}}
+	</details>
+	@endif
 
 	</div>
 

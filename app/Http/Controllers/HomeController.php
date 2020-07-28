@@ -48,16 +48,7 @@ class HomeController extends Controller
         $results = \App\Post::search($query)->paginate();
         return view('search', compact('results'));
     }
-
-    public function feed()
-    {
-        $friends = collect(auth()->user()->allFriends());
-
-        // $friends = collect(\App\User::whereIn('id', $all));
-
-        return view('home.hello', compact('friends'));
-    }
-
+    
     public function users()
     {
         return view('users')->with(
@@ -65,36 +56,4 @@ class HomeController extends Controller
                 ->latest()
                 ->simplePaginate(20));
     }
-
-    public function postsUserLiked()
-    {
-        $likedPostId = collect(
-                Like::select('likeable_id')
-                        ->where('user_id', auth()->user()->id)
-                        ->where('likeable_type', 'App\Post')
-                        ->get()
-                    )->pluck('likeable_id')
-                    ->toArray();
-
-        $likedPosts = Post::whereIn('id', $likedPostId)->paginate(15);
-        dd($likedPosts);
-        return view('likes.likedPosts')->withLikedPosts($likedPosts);
-        
-    }
-
-    public function commentsUserLiked()
-    {
-        $likedCommentId = collect(
-                Like::select('likeable_id')
-                        ->where('user_id', auth()->user()->id)
-                        ->where('likeable_type', 'App\Comment')
-                        ->get()
-                    )->pluck('likeable_id')
-                    ->toArray();
-
-        $likedComments = Comment::whereIn('id', $likedCommentId)->paginate(15);
-        dd($likedComments);
-        return view('likes.likedComments')->withLikedComments($likedCommentId);
-    }
-
 }

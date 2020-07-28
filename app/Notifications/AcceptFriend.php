@@ -7,9 +7,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class AcceptFriend extends Notification implements ShouldQueue
+class AcceptFriend extends Notification
 {
-    use Queueable;
+    // use Queueable;
 
     public $user;
 
@@ -31,7 +31,7 @@ class AcceptFriend extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['mail', 'database', 'broadcast'];
+        return ['mail', 'database', /*'broadcast'*/];
     }
 
     /**
@@ -40,13 +40,13 @@ class AcceptFriend extends Notification implements ShouldQueue
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    public function toMail($notifiable)
+ /*   public function toMail($notifiable)
     {
         return (new MailMessage)
                     ->line($this->user->name . " accepted your friend request!")
                     ->action('Profile', route('profile.show', $this->user->slug))
                     ->line('Thank you for using Sites!');
-    }
+    }*/
 
     /**
      * Get the array representation of the notification.

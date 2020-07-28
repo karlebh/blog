@@ -71,8 +71,6 @@ class PostController extends Controller
 
         ]);
 
-        // \App\User::findOrFail($post->user_id)->notify(new PostNoty($post));
-
         return redirect()->route('posts.show', compact('post'));
  
    }

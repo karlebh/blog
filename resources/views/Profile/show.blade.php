@@ -36,17 +36,19 @@
 					@endif
 				</span>
 				
-				@if($user->profile)
+				@if($user->profile->location)
 					<span style="margin-left: 1.75rem">
 						<i class="fa fa-map-marker ml-2" aria-hidden="true"></i>
-						<span> {{$user->profile->location ?? ""}} </span>
+						<span> {{$user->profile->location}} </span>
 					</span>
+				@endif
 			</div>
 			
 			<div>
+				@if($user->profile->about)
 				<span>
 						<i class="fa fa-check" aria-hidden="true"></i>
-						<span> {{$user->profile->about ?? ""}} </span>
+						<span> {{$user->profile->about}} </span>
 				</span>
 			</div>
 			@endif

@@ -4,7 +4,7 @@
 @section('content')
 <div class="container px-4">
 	@forelse($posts as $post)
-		<div class="row"><a href="{{ route('posts.show', $post->slug) }}" >{{ $post->desc }}</a></div>
+		<div class="row"><a href="{{ route('posts.show', $post->slug) }}" >{{ $post->title }}</a></div>
 
 		@empty 
 			<p>No post yet.</p>

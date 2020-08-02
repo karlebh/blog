@@ -28,7 +28,8 @@
     
     <div class="form-group col-md-6">
       <label for="desc">Description</label>
-     <textarea class="form-control @error('desc') is-invalid @enderror" 
+     <textarea 
+      rows="10" class="form-control @error('desc') is-invalid @enderror" 
       name="desc" placeholder="Enter a Description">
         {{ $post->desc }}
       </textarea>

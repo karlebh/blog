@@ -49,7 +49,7 @@
     
     <div class="form-group col-md-6">
       <label for="desc">Description</label>
-      <textarea 
+      <textarea rows="10" 
         class="form-control @error('desc') is-invalid @enderror" 
         value="{{ old('desc') }}" 
         name="desc" 

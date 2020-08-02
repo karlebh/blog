@@ -46,7 +46,7 @@
     
     <div class="form-group col-md-6">
       <label for="desc">Description</label>
-     <textarea class="form-control @error('desc') is-invalid @enderror" value="{{ old('desc') }}" name="desc" placeholder="Enter a Description"></textarea>
+     <textarea rows="10" class="form-control @error('desc') is-invalid @enderror" value="{{ old('desc') }}" name="desc" placeholder="Enter a Description"></textarea>
 
       @error('desc')
               <span class="invalid-feedback" role="alert">

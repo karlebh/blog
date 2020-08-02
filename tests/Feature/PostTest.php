@@ -56,7 +56,7 @@ class PostTest extends TestCase
                  'title' => 'title',
                  'desc' => 'A brand new title',
                  'image' => 'jjjj',
-      ])->assertStatus(200);
+      ])->assertStatus(302);
 
     
 

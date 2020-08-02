@@ -2069,7 +2069,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     userid: Number
@@ -2077,18 +2076,17 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       status: null,
-      id: this.userid // loading: true,
-
+      id: this.userid
     };
   },
   created: function created() {
     this.checkFriendshipStatus();
   },
-  computed: {
-    Status: function Status() {
-      return this.status;
-    }
-  },
+  // computed:{
+  // 		Status(){
+  // 			return this.status
+  // 		}
+  // 	},
   methods: {
     addFriend: function addFriend() {
       var _this = this;
@@ -2102,8 +2100,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios.get('/check/' + this.id).then(function (response) {
-        // console.log(response)
-        _this2.status = response.data.status; // this.loading == false
+        _this2.status = response.data.status;
       });
     },
     acceptFriend: function acceptFriend() {
@@ -44662,7 +44659,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", [
-      _vm.Status == 0
+      _vm.status === 0
         ? _c(
             "button",
             {
@@ -44678,7 +44675,7 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
-      _vm.Status == "pending"
+      _vm.status === "pending"
         ? _c("p", [
             _c(
               "button",
@@ -44710,19 +44707,12 @@ var render = function() {
           ])
         : _vm._e(),
       _vm._v(" "),
-      _vm.Status == "waiting"
+      _vm.status === "waiting"
         ? _c("p", { staticClass: "text-center" }, [_vm._v("Waiting")])
         : _vm._e(),
       _vm._v(" "),
-      _vm.Status == "friends"
-        ? _c(
-            "h5",
-            {
-              staticClass: "text-center mt-n4",
-              staticStyle: { color: "#41B883" }
-            },
-            [_vm._v("You are friends!")]
-          )
+      _vm.status === "friends"
+        ? _c("p", { staticClass: "text-center" }, [_vm._v("You Are Friends")])
         : _vm._e()
     ])
   ])

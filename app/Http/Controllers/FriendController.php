@@ -22,10 +22,11 @@ class FriendController extends Controller
     {
         $resp = auth()->user()->addFriend($id);
 
-        event(new \App\Events\Friend());
+        // event(new \App\Events\Friend());
         User::findOrFail($id)->notify(new FriendNotification(auth()->user()));
 
-    	return $resp;
+    	// return $resp;
+        return ['status' => 'waiting'];
     }
 
     public function accept($id)
@@ -33,27 +34,36 @@ class FriendController extends Controller
         $resp = auth()->user()->acceptFriend($id);
         User::findOrFail($id)->notify(new AcceptFriend(auth()->user()));
 
-        return $resp;
+        // return $resp;
+        return ['status' => 'friends']
     }
 
     public function decline($id)
     {
-        return auth()->user()->declineFriend($id);
+        auth()->user()->declineFriend($id);
+
+        return ['status' => 0];
     }
 
     public function check($id)
     {
-       if(auth()->user()->isFriendsWith($id)){
-            return ['status' => 'friends'];
-       }
-       if(auth()->user()->hasPendingFrom($id)){
+       // if(auth()->user()->isFriendsWith($id) === 1){
+       //      return ['status' => 'friends'];
+       // }
+       // else if(auth()->user()->hasPendingFrom($id) === 1){
+       //      return ['status' => 'pending'];
+       // }
+       //  else if(auth()->user()->hasPendingSentTo($id) === 1){
+       //  return ['status' => 'waiting'];
+       // }
+       // else {
+       // return ['status' => 0];
+        
+       // }
+
+       if(auth()->user()->hasPendingFrom($id) === 1){
             return ['status' => 'pending'];
        }
-        if(auth()->user()->hasPendingSentTo($id)){
-        return ['status' => 'waiting'];
-       }
-
-       return ['status' => 0];
        
     }
 

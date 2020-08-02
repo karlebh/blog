@@ -6,27 +6,26 @@
 	<!-- <div v-else> -->
 		<div>
 
-		<button v-if='Status == 0' class="btn btn-success" @click.prevent="addFriend">
+		<button v-if='status === 0' class="btn btn-success" @click.prevent="addFriend">
 		Add Friend</button>
-		<p  v-if="Status == 'pending'">
+
+		<p  v-if="status === 'pending'">
 		<button class="btn btn-primary" @click.prevent="acceptFriend">Accept Friend</button>
 
 		
 		<button class="btn delete" @click.prevent="declineFriend">Delete</button>
 
 		</p>
-		<p class="text-center" v-if="Status == 'waiting'">Waiting</p>
 
-		<h5 class="text-center mt-n4" style="color: #41B883" v-if="Status == 'friends'">You are friends!</h5>
+		<p class="text-center" v-if="status === 'waiting'">Waiting</p>
 
-		<!-- <p class="text-center" v-if="Status == 'friends'">You Are Friends</p> -->
+		<!-- <h5 class="text-center mt-n4" style="color: #41B883" v-if="status === 'friends'">
+		You are friends!
+		</h5> -->
+
+		<p class="text-center" v-if="status === 'friends'">You Are Friends</p>
 
 	</div>
-	
-
-	
-
-
 </div>
 </template>
 
@@ -40,18 +39,16 @@
 			return{
 				status: null,
 				id: this.userid,
-				// loading: true,
 			}
 		},
-
 		created(){
 			this.checkFriendshipStatus()
 		},
-		computed:{
-				Status(){
-					return this.status
-				}
-			},
+		// computed:{
+		// 		Status(){
+		// 			return this.status
+		// 		}
+		// 	},
 
 		methods: {
 			addFriend()
@@ -67,9 +64,7 @@
 			{
 				axios.get('/check/' + this.id)
 						.then(response => {
-							// console.log(response)
 							this.status = response.data.status
-							// this.loading == false
 						})
 			},
 

@@ -27,12 +27,13 @@
 
 			<div>
 				<span>
-					@if ($user->profile && $user->gender == 0)
+					@if ($user->profile && $user->gender === 0)
 					<i class="fa fa-female mr-1" aria-hidden="true"></i>
 					<span>Female</span>
-					@endif
+					@else
 					<i class="fa fa-male mr-1" aria-hidden="true"></i>
 					<span>Male</span>
+					@endif
 				</span>
 				
 				@if($user->profile)

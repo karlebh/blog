@@ -38,7 +38,7 @@
 			    @enderror
 				
 				{{-- image --}}
-			    <div class="form-group col-md-6 my-4 py-3">
+{{-- 			    <div class="form-group col-md-6 my-4 py-3">
 			    <input 
 				    type="file" 
 				    name="img" 
@@ -52,7 +52,7 @@
 	              <strong>{{ $message }}</strong>
 	            </span>
 		     @enderror
-   			</div>
+   			</div> --}}
 
 
 				</div>

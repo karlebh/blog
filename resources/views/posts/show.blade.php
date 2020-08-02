@@ -49,18 +49,19 @@
 	
 	@if($post->img)
 	
-	<img src="/storage/{{$post->img}} " class="w-25 h-25" style="object-fit: scale-down;">
+	<img src="/storage/{{$post->img}} " class="w-25 h-25 mb-3" style="object-fit: scale-down;">
 	
 	@endif
-
+	
+	<br />
 	
 	@can('view', $post)
 
 	<like
 
-	 :id = "{{ $post->id }}"
-	 :liked = "{{ $isLiked ? 'true' : 'false' }}"
-	 :count = "{{ $post->likes()->count() }}"
+		 :id = "{{ $post->id }}"
+		 :liked = "{{ $isLiked ? 'true' : 'false' }}"
+		 :count = "{{ $post->likes()->count() }}"
 	 >
 	 	
 	 </like>
@@ -129,12 +130,11 @@
 			<input type="hidden" name="commentable_id" value="{{$post->id}}">
 			<input type="hidden" name="parent_id" value="{{$comment->id ?? ''}}">
 
-			<div class="form-group col-md-6 my-4 py-3">
+			{{-- <div class="form-group col-md-6 my-4 py-3">
 			    <input 
 				    type="file" 
 				    name="img" 
 				    class="form-control @error('img') is-invalid @enderror" 
-				    value="{{ old('img') }}" 
 				    accept="image/*"
 			    >
 
@@ -143,7 +143,7 @@
 	              <strong>{{ $message }}</strong>
 	            </span>
 		     @enderror
-   			</div>
+   			</div> --}}
 
 			<div class="form-group ">
 				<input type="submit" name="comment" value="Add Comment" class="btn btn-success">

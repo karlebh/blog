@@ -22,14 +22,14 @@ class CommentController extends Controller
     public function store(Request $request)
     {        
         $data = $request->validate([
-            'img' => 'image|nullable|max:10240',
+            // 'img' => 'image|nullable|max:10240',
             'body' => 'required|string'
         ]);
         
-        if($request->hasFile('img')){
+      /*  if($request->hasFile('img')){
             $img = $request->img->store('images', 'public');
             $imgArray = ['img' => $img];
-        }
+        }*/
 
         $others = [
             'user_id' => auth()->user()->id,
@@ -42,7 +42,6 @@ class CommentController extends Controller
             $data, $imageArray ?? [], $others
         );
 
-        dd($all);
         
         $comment = Comment::firstOrCreate($all);
         $comment->commentable()->increment('comments_count');

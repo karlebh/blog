@@ -21,13 +21,13 @@
 			<div class="card-text">
 				{{$comment->body}}
 
-			@if($comment->img)
+			{{-- @if($comment->img)
 				<img 
 					src="/storage/{{$comment->img}} " 
 					class="w-25 h-25" 
 					style="object-fit: scale-down;"
 				>
-			@endif
+			@endif --}}
 		
 				 <p> </p>
 

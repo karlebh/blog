@@ -2,30 +2,7 @@
 
 @section('content')
 
-	<div style="min-width: 60rem;">
-		<form  
-			style="margin-left: 6.5rem;" 
-			class="form p-3 w-25" 
-			method="get" 
-			action="{{ route('searchUser') }}"
-		>                         
-		    <div class="input-group">
-		      <input 
-			      type="text" 
-			      name="" 
-			      class="form-control" 
-			      placeholder="Search User"
-		      >
-		      <div class="input-group-append">
-		        <input 
-			        class="btn btn-success" 
-			        type="submit" 
-			        value="Go"
-		        >
-		      </div>
-		    </div>
-	    </form>
-	</div>
+
 <div class="container">
 	
 		

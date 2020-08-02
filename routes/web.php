@@ -34,7 +34,7 @@ Route::get('search', 'HomeController@search')->name('search');
 
 Route::post('like', 'LikeController@like')->name('like.create');
 Route::post('unlike', 'LikeController@unlike')->name('like.delete');
-Route::get('auth_user', function(){return auth()->user();})->middleware('auth');
+// Route::get('auth_user', function(){return auth()->user();})->middleware('auth');
 
 
 

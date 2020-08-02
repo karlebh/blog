@@ -9,11 +9,18 @@
 		<div class="card-body">{{ $not->data['message'] ?? "" }} {{ $not->created_at->diffForHumans() }}
 
 			<p>
-				Check <a href="{{route('profile.show', $not->data['slug'])}}">{{ $not->data['name']}}</a> profile.
+				Check <a 
+					href="{{route('profile.show', $not->data['slug'])}}"
+					>
+					{{ $not->data['name']}}<span>'s</span>
+					</a>
+				profile.
 			</p>
 			<br>
 		@if(isset($not->data['id']))
-		<friending :userid=" {{$not->data['id']}} "></friending>
+		<friending 
+			:userid=" {{$not->data['id']}} "
+		></friending>
 		@endif
 
 	  </div>

@@ -63,3 +63,6 @@ Blog should only be used for learning purposes.
 - Learn! 
 
 
+Website live @ http://lara-blog-example.herokuapp.com/ 
+
+

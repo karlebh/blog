@@ -9,13 +9,12 @@
   @csrf
     
      <div class="form-group col-md-6">
-      <label for="category"></label>
+      <label for="category">Category</label>
       <select 
           name="category_id" 
           class="form-control @error('category_id') is-invalid @enderror" 
           value="{{ old('category_id') }}"
       >
-        <option>Select Category</option>
       @foreach($categories as $category)
         <option value="{{$category->id}}">
          {{$category->name}}
@@ -55,8 +54,8 @@
           @enderror
     </div>
 
-    <div class="form-group col-md-6">
-     <label for="desc">image</label>
+    <div class="form-group col-md-6 mb-3">
+     <label for="desc">image (Optional)</label>
 
      <input 
           type="file" 

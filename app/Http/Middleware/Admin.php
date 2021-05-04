@@ -16,14 +16,10 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        $role = new \App\Role;
-
-        if(
+        if (
             !$request->user() || 
-            !$request->user()->roles->contains($role->findOrFail(1)->value > 2
-            ) 
-        )
-        {
+            !$request->user()->Admin() //Admin
+        ) {
             return redirect()->route('home');
         }
 

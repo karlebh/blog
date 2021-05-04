@@ -17,7 +17,7 @@ class CreateFriendsTable extends Migration
             $table->id();
             $table->integer('requester');
             $table->integer('requestee');
-            $table->boolean('status')->default(false);
+            $table->enum('status', ['notFriends', 'pending', 'waiting', 'friends'])->default('notFriends');
             $table->timestamps();
         });
     }

@@ -2,6 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::get('hell', function () {
+	// return \App\Friend::where([
+ //                'requester' => 5,
+ //                'requestee' => auth()->user()->id,
+ //                'status' => 'waiting',
+ //            ])->get();
+ return auth()->user()->id;
+    });
 
 
 Route::get('/', 'PostController@index')->name('home');
@@ -15,7 +23,7 @@ Route::get('comment/{comment}/reply', 'ReplyController@edit')->name('reply.comme
 Route::post('comment', 'ReplyController@store')->name('reply.store');
 
 Route::post('profile/update', 'ProfileController@update')->name('profile.update');
-Route::get('profile/{user:slug}', 'ProfileController@show')->name('profile.show');
+Route::get('profile/{user:username}', 'ProfileController@show')->name('profile.show');
 
 Route::post('likeComment', 'LikeController@likeComment');
 Route::post('unlikeComment', 'LikeController@unlikeComment');
@@ -34,8 +42,6 @@ Route::get('search', 'HomeController@search')->name('search');
 
 Route::post('like', 'LikeController@like')->name('like.create');
 Route::post('unlike', 'LikeController@unlike')->name('like.delete');
-// Route::get('auth_user', function(){return auth()->user();})->middleware('auth');
-
 
 
 Route::get('addFriend/{id}', 'FriendController@add')->name('friend.add');
@@ -62,13 +68,11 @@ Route::view('searchResults', 'users.search');
 Route::get('likedPosts', 'FeedController@likedPosts')->name('likedPosts');
 Route::get('friendsPosts', 'FeedController@friendsPosts')->name('friendsPosts');
 Route::get('followedPosts', 'FeedController@followedPosts')->name('followedPosts');
-// Route::get('likedComments', 'FeedController@likedComments')->name('likedComments');
 
-
-// Route::get('unreadNots', function(){
-// 							return auth()->user()->unreadNotifications;
-// 									})->middleware('auth');
-
-
-// Route::get('show', function(){ return \App\User::find(1)->friendsId();});
-// Route::get('pag', function(){ return phpinfo();});
+Route::group([
+	'namespace' => 'Admin',
+	'middleware' => 'admin',
+	'prefix' => 'admin',
+	], function () {
+	Route::view('index', 'HomeController@index')->name('admin.index');
+});

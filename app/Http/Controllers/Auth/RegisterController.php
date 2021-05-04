@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use App\User;
 use App\Profile;
-use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Validator;
 use App\Events\NewUserRegistered;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
@@ -54,7 +53,6 @@ class RegisterController extends Controller
     {
         $messages = ['gender.integer' => 'Select a gender'];
         return Validator::make($data, [
-            'name' => ['required', 'string', 'min:4', 'max:255'],
             'username' => ['required', 'string', 'unique:users', 'min:4', 'max:255',],
             'gender' => ['required', 'integer'],
             'email' => ['required', 'string', 'email', 'max:255',],
@@ -73,9 +71,7 @@ class RegisterController extends Controller
         $username = $data['username'];
 
         $user =  User::create([
-            'name' => $data['name'],
             'username' => $username,
-            'slug' => Str::slug($username),
             'gender' => $data['gender'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),

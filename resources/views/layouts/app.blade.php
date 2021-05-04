@@ -73,16 +73,19 @@
                         
                         
                                 <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{route('posts.create')}}">Create Post</a>
-
-                                <a class="dropdown-item" href="{{route('posts.index')}}">Posts</a>
+                                <a class="dropdown-item" href="{{route('posts.index')}}">All Posts</a>
 
                                 <a class="dropdown-item" href="{{route('category.create')}}">Create Category</a>
                                 <!-- <hr> -->
                                 
                                 <!-- <hr> -->
                                 <a class="dropdown-item" href="{{ route('users') }}">All Users</a>
+                                 <a class="dropdown-item" href="{{route('category.index')}}">Categories</a>
                                 </div>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="dropdown-item" href="{{route('posts.create')}}">Create Post</a>
                         </li>
 
                         <li class="nav-item">
@@ -102,11 +105,7 @@
                             @endif 
                             </a>
                         </li>
-
-                        <li class="nav-item">
-                           <a class="dropdown-item" href="{{route('category.index')}}">Categories</a>
-                        </li>
-{{-- 
+                        {{-- 
                          <li class="nav-item">
                            <a class="dropdown-item" href="{{route('subscription.index')}}">Subscriptions</a>
                         </li> --}}
@@ -135,20 +134,11 @@
                                     <a class="dropdown-item" href="{{route('friendsPosts')}}">
                                         Friends Posts
                                     </a>
-                                  
+
                                 </div>
-                        </li>
-
-                         
-                       
+                            </li>
                         @endauth
-                                                    
-
-                      
-
-
                     </ul>
-
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
@@ -164,15 +154,18 @@
                             </form>
                             </li>
                         @guest
-                            <li class="nav-item">
+
+                            <li class="nav-item mt-3">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
-                                <li class="nav-item">
+                                <li class="nav-item mt-3">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
-                        @else
+                        @endguest
+
+                        @auth
                             <li class="nav-item dropdown">
                                 <a 
                                     id="navbarDropdown" 
@@ -184,13 +177,12 @@
                                     aria-expanded="false" 
                                     v-pre
                                 >
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ Auth::user()->username }} <span class="caret"></span>
                                 </a>
                                 
                                 <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('profile.show', auth()->user()->slug ) }}" >
-                                       {{ __('Profile') }}
-                                    </a>
+                                    <a class="dropdown-item" href="{{ route('profile.show', auth()->user()->username) }}">
+                                       {{ __('Profile') }}</a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -203,12 +195,16 @@
                                     </form>
                                 </div>
                             </li>
-                        @endguest
+                        @endauth
                     </ul>
                 </div>
             </div>
         </nav>
         <main class="py-4">
+        	@if(session()->has('error'))
+        		<div class="p-4 bg-white text-danger text-center mb-2"><h4>{{ session()->get('error') }}</h4></div>
+        	@endif
+
             @yield('content')
         </main>
     </div>

@@ -41,11 +41,13 @@ class HomeController extends Controller
     public function search(Request $request)
     {
         if(strlen($request->q) < 3){
+        	session()->flash('error', 'You only search for 3 words and above!');
             return back()->with('q', $request->q);
         }
+        //$request->validate(['q' => ['string']);
         $query = $request->q;
 
-        $results = \App\Post::search($query)->paginate();
+        $results = \App\Post::search($query)->get();
         return view('search', compact('results'));
     }
     

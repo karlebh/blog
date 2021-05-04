@@ -4,16 +4,13 @@
 
 
 <div class="container">
-	
-		
-
 	@foreach($users as $user)
 		
 		<div>
 			<div class="bg-white p-4 mb-4 ">
 				<div class="m-auto w-50">
 					
-				<a	href="{{ route('profile.show', $user->slug) }}">
+				<a	href="{{ route('profile.show', $user->username) }}">
 					<strong>
 						
 					{{$user->username}}
@@ -28,7 +25,7 @@
 					</strong>
 				</span>
 
-				@if(auth()->user()->id != $user->id)
+				@if(Auth::check() && auth()->user()->id != $user->id)
 					<friending class="pt-4" :userId=" {{ $user->id}} "></friending>
 				@endif
 

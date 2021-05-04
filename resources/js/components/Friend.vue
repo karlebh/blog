@@ -1,83 +1,61 @@
 <template>
+	<div>
+		<button v-if="status == 'notFriends'" class="btn btn-success" @click="addFriend">
+			Add Friend
+		</button>
 
-<div>
-	<!-- <span v-if="loading"><loading></loading></span> -->
-	
-	<!-- <div v-else> -->
-		<div>
-
-		<button v-if='status === 0' class="btn btn-success" @click.prevent="addFriend">
-		Add Friend</button>
-
-		<p  v-if="status === 'pending'">
-		<button class="btn btn-primary" @click.prevent="acceptFriend">Accept Friend</button>
+		<div  v-if="status == 'pending'">
+		<button class="btn btn-primary" @click="acceptFriend">Accept Friend</button>
 
 		
-		<button class="btn delete" @click.prevent="declineFriend">Delete</button>
+		<button class="btn delete" @click="declineFriend">Delete</button>
 
-		</p>
+		</div>
 
-		<p class="text-center" v-if="status === 'waiting'">Waiting</p>
+		<p class="text-center" v-if="status == 'waiting'">Waiting</p>
 
-		<!-- <h5 class="text-center mt-n4" style="color: #41B883" v-if="status === 'friends'">
-		You are friends!
-		</h5> -->
-
-		<p class="text-center" v-if="status === 'friends'">You Are Friends</p>
-
+		<p class="text-center text-success" v-if="status == 'friends'">You Are Friends</p>
 	</div>
-</div>
 </template>
 
-<script type="text/javascript">
+<script>
 	export default{
 		props: {
-				userid: Number,
+			userid: Number,
 		},
 
 		data(){
-			return{
-				status: null,
+			return {
+				status: '',
 				id: this.userid,
 			}
 		},
-		created(){
+		created() {
 			this.checkFriendshipStatus()
 		},
-		// computed:{
-		// 		Status(){
-		// 			return this.status
-		// 		}
-		// 	},
 
 		methods: {
-			addFriend()
-			{
-				// this.loading = true
+			addFriend() {
 				axios.get('/addFriend/' + this.id)
-						.then(response => {
-										this.status = 'waiting'
-								})
+				this.status = 'waiting'
 			},
 
-			checkFriendshipStatus()
-			{
+			checkFriendshipStatus() {
 				axios.get('/check/' + this.id)
-						.then(response => {
-							this.status = response.data.status
-						})
+				.then(response => {
+					console.log(response.data)
+					this.status = response.data
+				})
 			},
 
-			acceptFriend()
-			{
+			acceptFriend() {
 				axios.get('/acceptFriend/' + this.id)
-						.then(response => this.status = 'friends')
+				this.status = 'friends'
 			},
 
-			declineFriend()
-			{
+			declineFriend() {
 				axios.get('/declineFriend/' + this.id)
-						.then(response => this.status = 0)
+				this.status = 'notFriends'
 			}
 		}
 	}

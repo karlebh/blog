@@ -58,19 +58,15 @@
         like(){
 
             axios.post('/like', {id: this.id})
-                .then( response => {
-                this.liked = true;
-                this.counts = this.count + 1//this is responsible for normal like count
-            });
+            this.liked = true;
+            this.counts++
         },
 
         unlike() {
 
             axios.post('/unlike', {id: this.id})
-                .then(response => {
-                this.liked = false;
-                this.counts -= 1 //this is responsible for normal like count
-            });
+            this.liked = false;
+            this.counts--
           }
        },
        watch:{

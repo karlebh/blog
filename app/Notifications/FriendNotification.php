@@ -30,23 +30,9 @@ class FriendNotification extends Notification
      */
     public function via($notifiable)
     {
-        return [/*'mail', 'broadcast',*/ 'database'];
+        return ['broadcast', 'database'];
     }
 
-    /**
-     * Get the mail representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
-     */
-    /*public function toMail($notifiable)
-    {
-        return (new MailMessage)
-                    ->line( $this->user->name . "sent you a friend request")
-                    ->action('View Profile', route('profile.show', $this->user->slug))
-                    ->line('Thank you for using Sites');
-    }
-*/
     /**
      * Get the array representation of the notification.
      *
@@ -57,9 +43,9 @@ class FriendNotification extends Notification
     {
         return [
             "id" => $this->user->id,
-            "name" => $this->user->name,
-            "message" =>  $this->user->name . ' sent you a friend request',
-            "slug" => $this->user->slug,
+            "username" => $this->user->username,
+            "message" =>  $this->user->username . ' sent you a friend request',
+            "extra" => "Check " . $this->user->username . "profile to accept their request",
         ];
     }
 

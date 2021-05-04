@@ -9,8 +9,6 @@ use Illuminate\Notifications\Notification;
 
 class AcceptFriend extends Notification
 {
-    // use Queueable;
-
     public $user;
 
     /**
@@ -57,9 +55,10 @@ class AcceptFriend extends Notification
     public function toArray($notifiable)
     {
         return [
-            "name" => $this->user->name,
-            "message" => $this->user->name . " accepted your friend request!",
-            "slug" => $this->user->slug,
+            'id' => $this->user->id,
+            "username" => $this->user->username,
+            "message" => $this->user->username . " accepted your friend request!",
+            'extra' =>  "Check " .  $this->user->username . "'s profile to hang out",
         ];
     }
 }

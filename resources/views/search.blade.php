@@ -3,10 +3,12 @@
 @section('content')
 
 <div class="container">
-	<p>
-		@if($results->count() > 0) <strong>{{ $results->total() }}</strong> @else No @endif
-		
-		Search Results for <strong>{{request()->input('q')}}</strong></p>
+
+		@if($results->count() > 0) 
+			<p><strong>{{ $results->count() }}</strong> result(s) found for <strong>{{request()->input('q')}}</strong></p>
+		@else 
+			<p>No Search Results for <strong>{{request()->input('q')}}</strong></p>
+		@endif
 
 	<br />
 
@@ -19,7 +21,7 @@
 			<a href="{{ route('posts.show', $result->slug) }}"> 
 				{{$result->title}}
 			</a>   <span> by </span>
-			<a href="{{ route('profile.show', $result->user->slug ) }}"> 
+			<a href="{{ route('profile.show', $result->user->username ) }}"> 
 				{{$result->user->name}}
 			</a>
 
@@ -40,7 +42,8 @@
 	@endforelse
 
 		{{-- {{ $results->appends(request()->query())->links()}} --}}
-		{{ $results->appends(Request::toArray())->links()}}
+		{{-- {{ $results->appends(Request::toArray())->links()}} --}}
+		{{-- {{ $results->links()}} --}}
 
 
 

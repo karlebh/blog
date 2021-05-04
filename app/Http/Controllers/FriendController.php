@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Traits\Friendable;
 use App\User;
-use App\Notifications\FriendNotification;
+use App\Friend;
+use Illuminate\Http\Request;
 use App\Notifications\AcceptFriend;
+use App\Notifications\FriendNotification;
 
 
 class FriendController extends Controller
 {
-    use Friendable;
-
   	public function __construct()
   	{
   		return $this->middleware('auth');
@@ -20,53 +18,101 @@ class FriendController extends Controller
 
     public function add($id)
     {
-        $resp = auth()->user()->addFriend($id);
+        Friend::firstOrCreate([
+          'requester' => auth()->user()->id,
+          'requestee' => $id,
+          'status' => 'waiting'
+        ]);
 
-        // event(new \App\Events\Friend());
         User::findOrFail($id)->notify(new FriendNotification(auth()->user()));
 
-    	// return $resp;
         return ['status' => 'waiting'];
     }
 
     public function accept($id)
     {
-        $resp = auth()->user()->acceptFriend($id);
+        Friend::where([
+            'requester' => $id,
+            'requestee' => auth()->user()->id,
+        ])->update(['status' => 'friends']);
+
         User::findOrFail($id)->notify(new AcceptFriend(auth()->user()));
 
-        // return $resp;
-        return ['status' => 'friends']
+        return ['status' => 'friends'];
     }
 
     public function decline($id)
     {
-        auth()->user()->declineFriend($id);
+         $request = Friend::where([
+            'requester' => $id,
+            'requestee' => auth()->user()->id,
+            'status' => 'notFriends'
+        ]);
 
-        return ['status' => 0];
+        $request->delete();
+
+        return ['status' => 'notFriends'];
     }
 
     public function check($id)
     {
-       // if(auth()->user()->isFriendsWith($id) === 1){
-       //      return ['status' => 'friends'];
-       // }
-       // else if(auth()->user()->hasPendingFrom($id) === 1){
-       //      return ['status' => 'pending'];
-       // }
-       //  else if(auth()->user()->hasPendingSentTo($id) === 1){
-       //  return ['status' => 'waiting'];
-       // }
-       // else {
-       // return ['status' => 0];
-        
-       // }
+      $status = [];
 
-       if(auth()->user()->hasPendingFrom($id) === 1){
-            return ['status' => 'pending'];
-       }
-       
+        if ($this->isFriendsWith($id)) {
+           return $status['status'] = 'friends';
+        } 
+
+         if ($this->isWaitingFor($id)) {
+          return $status['status'] = 'waiting';
+        } 
+
+         if ($this->hasPendingFrom($id)) {
+          return $status['status'] = 'pending';
+        }
+
+         return $status['status'] = 'notFriends';
+
+
     }
 
-   
+    public function isFriendsWith($id) {
+      return Friend::where([
+            'requester' => $id,
+            'requestee' => auth()->user()->id,
+            'status' => 'friends',
+        ])->orWhere([
+            'requester' => auth()->user()->id,
+            'requestee' => $id,
+            'status' => 'friends',
+        ])->exists();
+    }
 
+    // public function isNotFriendsWith($id) {
+    //   return Friend::where([
+    //         'requester' => $id,
+    //         'requestee' => auth()->user()->id,
+    //         'status' => 'notFriends',
+    //     ])->orWhere([
+    //         'requester' => auth()->user()->id,
+    //         'requestee' => $id,
+    //         'status' => 'notFriends',
+    //     ])->exists();
+    // }
+
+    public function isWaitingFor($id) {
+      return Friend::where([
+                'requester' => auth()->user()->id,
+                'requestee' => $id,
+                'status' => 'waiting',
+            ])->exists();
+    }
+
+     public function hasPendingFrom($id) {
+      return Friend::where([
+                'requester' => $id,
+                'requestee' =>  auth()->user()->id,
+                'status' => 'pending',
+            ])->exists();
+    }
+   
 }

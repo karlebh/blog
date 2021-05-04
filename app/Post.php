@@ -24,7 +24,6 @@ class Post extends Model
     public function toSearchableArray()
     {
         $array = $this->toArray();
-        $array['user'] = $this->user['name'];
         return $array;
     }
     

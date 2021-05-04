@@ -19,9 +19,9 @@
 		 <strong>
 		 	by 
 			 <a 
-			 	href="{{ route('profile.show', $post->user->slug) }}" 
+			 	href="{{ route('profile.show', $post->user->username) }}" 
 			 >
-			 	{{ $post->user->name }}
+			 	{{ $post->user->username }}
 			</a>
 		 </strong>
 
@@ -29,9 +29,7 @@
 
 		<strong>
 			<span>in</span>
-			<a href="{{ route('category.show', $post->category->slug) }}" >
-				{{ $post->category->name }}
-			</a>
+			<a href="{{ route('category.show', $post->category->slug) }}">{{ $post->category->name }}</a>
 		</strong>
 		
 

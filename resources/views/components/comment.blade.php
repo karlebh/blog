@@ -11,8 +11,8 @@
 		<div class="card-body">
 			<div class="card-title">
 				By
-				<a href="/profile/{{$comment->user->slug}}">
-					{{ $comment->user->name }}
+				<a href="/profile/{{$comment->user->username}}">
+					{{ $comment->user->username }}
 				</a>
 
 				 <span></span> {{$comment->created_at->diffForHumans()}}

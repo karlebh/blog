@@ -6,23 +6,13 @@
 		@forelse($nots as $not)
 		<div class="card">
 
-		<div class="card-body">{{ $not->data['message'] ?? "" }} {{ $not->created_at->diffForHumans() }}
-
-			<p>
-				Check <a 
-					href="{{route('profile.show', $not->data['slug'])}}"
-					>
-					{{ $not->data['name']}}<span>'s</span>
-					</a>
-				profile.
-			</p>
+		<div class="card-body">
+			<h5>{{ $not->data['message'] ?? "" }} {{ $not->created_at->diffForHumans() }}</h5>
 			<br>
-		@if(isset($not->data['id']))
-		<friending 
-			:userid=" {{$not->data['id']}} "
-		></friending>
-		@endif
-
+			<a class="mt-2" href="{{route('profile.show', $not->data['username'])}}">
+				<h4> {{ $not->data['extra'] }} </h4>
+			</a>
+			<br>
 	  </div>
 		</div>
 		@empty

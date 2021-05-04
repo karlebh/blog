@@ -7,7 +7,6 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Socialite;
 use App\User;
-use Illuminate\Support\Str;
 use Auth;
 
 class LoginController extends Controller
@@ -57,10 +56,8 @@ class LoginController extends Controller
 
         
         $user = User::firstOrCreate([
-            'name' => $githubUser->name,
+            'username' => $githubUser->name,
             'gender' => '1', //default
-            'username' => $githubUser->nickname,
-            'slug' => Str::slug($githubUser->nickname),
             'email' => $githubUser->email,
             'provider' => 'github',
             'provider_id' => $githubUser->id

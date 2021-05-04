@@ -43,7 +43,7 @@ class PostNoty extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'name' => $post->users()->slug,
+            'name' => $post->users()->username,
             "message" => "New Post created",
         ];
     }

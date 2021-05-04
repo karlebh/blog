@@ -28,13 +28,9 @@ class FeedController extends Controller
 
     public function likedPosts()
     {
-        $likedPostId = collect(
-                Like::select('likeable_id')
-                        ->where('user_id', auth()->user()->id)
-                        ->where('likeable_type', 'App\Post')
-                        ->get()
-                    )->pluck('likeable_id')
-                    ->toArray();
+    	$likedPostId = Like::where('user_id', auth()->user()->id)
+    			->where('likeable_type', 'App\Post')
+    			->pluck('likeable_id');
 
         $likedPosts = Post::whereIn('id', $likedPostId)->paginate(15);
         return view('feed.likedPosts', compact('likedPosts'));

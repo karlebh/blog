@@ -50,8 +50,8 @@
 						<i class="fa fa-check" aria-hidden="true"></i>
 						<span> {{$user->profile->about}} </span>
 				</span>
+				@endif
 			</div>
-			@endif
 			
 		</div>
 		<span>
@@ -74,16 +74,6 @@
 		@endif
 	</div>
 
-
-		
-
-
-	@if(auth()->user() && auth()->user()->id !== $user->id)
-	<p><friending :userId=" {{ $user->id}} "></friending></p>
-	
-	@endif
-
-	
 	<p><notify :id=" {{ $user->id }} "></notify></p>
 	
 	<div>

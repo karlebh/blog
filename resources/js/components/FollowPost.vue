@@ -10,10 +10,9 @@
 
 
 <script scoped>
-	export default{
+	export default {
 		props:['postid', 'follows'],
-		data()
-		{
+		data() {
 			return{
 				id: this.postid,
 				status: this.follows,

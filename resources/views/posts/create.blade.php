@@ -4,6 +4,7 @@
 
 <div class="container">
   
+@if(count($categories) > 0)
 <form method="post" action="{!! route('posts.store') !!}" enctype="multipart/form-data" >
 
   @csrf
@@ -78,11 +79,14 @@
     <div class="form-group col-md-6">
      <input type="submit" class="btn btn-success" value="Submit Post">
     </div>
-
-
-
-
 </form>
+@else 
+
+<div>
+  <a href="{{ route('category.create') }}">Click Here to create a category</a>
+</div>
+
+@endif
 </div>
 
 <!-- <create-post /> -->

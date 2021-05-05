@@ -6,12 +6,18 @@ use App\Comment;
 use App\Post;
 use App\Like;
 use Illuminate\Http\Request;
+use App\Notifications\CommentNotification;
 
 class CommentController extends Controller
 {
     public function __construct()
     {
         return $this->middleware('auth');
+    }
+
+    public function index()
+    {
+        return abort(404);
     }
     /**
      * Store a newly created resource in storage.
@@ -20,7 +26,7 @@ class CommentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {        
+    {   
         $data = $request->validate([
             'img' => 'image|nullable|max:10240',
             'body' => 'required|string'
@@ -41,10 +47,11 @@ class CommentController extends Controller
         $all = array_merge(
             $data, $imageArray ?? [], $others
         );
-
         
         $comment = Comment::firstOrCreate($all);
         $comment->commentable()->increment('comments_count');
+
+        $comment->commentable->user->notify(new CommentNotification($comment->commentable));
 
         return back();  
     }

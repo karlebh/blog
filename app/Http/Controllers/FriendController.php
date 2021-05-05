@@ -11,22 +11,23 @@ use App\Notifications\FriendNotification;
 
 class FriendController extends Controller
 {
-  	public function __construct()
-  	{
+  	public function __construct() 
+    {
   		return $this->middleware('auth');
   	}
 
     public function add($id)
     {
-        Friend::firstOrCreate([
-          'requester' => auth()->user()->id,
-          'requestee' => $id,
-          'status' => 'waiting'
-        ]);
+      
+      Friend::firstOrCreate([
+        'requester' => auth()->user()->id,
+        'requestee' => $id,
+        'status' => 'waiting'
+      ]);
 
-        User::findOrFail($id)->notify(new FriendNotification(auth()->user()));
+      User::findOrFail($id)->notify(new FriendNotification(auth()->user()));
 
-        return ['status' => 'waiting'];
+      return ['status' => 'waiting'];
     }
 
     public function accept($id)

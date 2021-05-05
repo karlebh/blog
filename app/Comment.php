@@ -29,12 +29,4 @@ class Comment extends Model
     {
     	return $this->morphTo();
     }
-
-
-    public function path()
-    {
-        $comment = $this->commentable->comments->pluck('id')->search($this->id) + 1;
-        
-    }
-
 }

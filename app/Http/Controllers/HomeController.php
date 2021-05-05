@@ -30,11 +30,11 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function nots()
+    public function notifications()
     {
         auth()->user()->unreadNotifications->markAsRead();
         $nots = auth()->user()->notifications;
-        
+
         return view('notify', compact('nots'));
     }
 

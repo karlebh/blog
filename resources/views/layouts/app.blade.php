@@ -130,11 +130,6 @@
                                     <a class="dropdown-item" href="{{route('followedPosts')}}">
                                         Followed Posts
                                     </a>
-
-                                    <a class="dropdown-item" href="{{route('friendsPosts')}}">
-                                        Friends Posts
-                                    </a>
-
                                 </div>
                             </li>
                         @endauth
@@ -146,7 +141,7 @@
                             <form class="form pt-3" method="get" action="{{ route('search')}}">
                                 
                             <div class="input-group">
-                              <input type="text" name="q" class="form-control" placeholder="Search...">
+                              <input type="text" name="q" class="form-control" placeholder="Search Posts">
                               <div class="input-group-append">
                                 <input class="btn btn-success" type="submit" value="Go" >
                               </div>

@@ -2,16 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('hell', function () {
-	// return \App\Friend::where([
- //                'requester' => 5,
- //                'requestee' => auth()->user()->id,
- //                'status' => 'waiting',
- //            ])->get();
- return auth()->user()->id;
-    });
-
-
 Route::get('/', 'PostController@index')->name('home');
 
 Route::resource('posts', 'PostController');
@@ -36,7 +26,7 @@ Route::get('users', 'HomeController@users')->name('users');
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index');
-Route::get('nots', 'HomeController@nots')->name('nots');
+Route::get('nots', 'HomeController@notifications')->name('nots');
 Route::get('search', 'HomeController@search')->name('search');
 
 

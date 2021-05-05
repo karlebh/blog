@@ -24,12 +24,7 @@
 						{{$user->created_at->diffForHumans()}}
 					</strong>
 				</span>
-
-				@if(Auth::check() && auth()->user()->id != $user->id)
-					<friending class="pt-4" :userId=" {{ $user->id}} "></friending>
-				@endif
-
-					</div>
+				</div>
 			</div>
 		</div>
 	@endforeach

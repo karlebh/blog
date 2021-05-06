@@ -77,7 +77,4 @@ class Post extends Model
         return $this->path();
     }
 
-
-  
-
 }

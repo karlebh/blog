@@ -7,18 +7,20 @@
 		<div class="card mb-">
 
 		<div class="card-body">
-			<h5>{{ $not->data['name'] ?? "" }} {{ $not->created_at->diffForHumans() }}</h5>
-			<br>
-			<a class="mt-2" href="{{route('profile.show', $not->data['name'])}}">
-				<h4> {{ $not->data['name'] }} </h4>
-			</a>
-
-			<p>commented on your post 
-				<a href="{{ route('posts.show', $not->data['postSlug']) }}">
-					<h1>{{ $not->data['postTitle'] }}</h1>
+			<article>
+				<a style="font-size: 1rem;" href="{{route('profile.show', $not->data['commenterUsername'])}}">
+					{{ $not->data['commenterUsername'] }}
 				</a>
-			</p>
-			<br>
+
+				<span>
+					commented on your post, 
+					<a style="font-size: 1rem;" href="{{ route('posts.show', $not->data['postSlug']) }}">
+						{{ $not->data['postTitle'] }}
+					</a>
+				</span>
+				
+			</article>
+
 	  </div>
 		</div>
 		@empty

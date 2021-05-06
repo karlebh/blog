@@ -37,6 +37,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function searchableAs()
+    {
+        return 'users_index';
+    }
+
     public function toSearchableArray()
     {
         $array = $this->toArray();

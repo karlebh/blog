@@ -11,9 +11,12 @@ class CommentNotification extends Notification
 {
     public $post;
 
-    public function __construct($post)
+    public $commenter;
+
+    public function __construct($post, $commenter)
     {
         $this->post = $post;
+        $this->commenter = $commenter;
     }
     /**
      * Get the notification's delivery channels.
@@ -37,9 +40,9 @@ class CommentNotification extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'name' => $notifiable->username,
             'postSlug' => $this->post->slug,
-            'postTitle' => $this->post->title
+            'postTitle' => $this->post->title,
+            'commenterUsername' => $this->commenter->username,
         ];
     }
 }

@@ -8,7 +8,7 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CommentPolicy
 {
-    use HandlesAuthorization;
+  use HandlesAuthorization;
 
     /**
      * Create a new policy instance.
@@ -18,17 +18,22 @@ class CommentPolicy
 
     public function view()
     {
-      return auth()->user();
+      return true;
     }
 
-  	public function edit(User $user, Comment $comment)
-  	{
-  		return $user->id === $comment->user_id;
-  	}
+    public function edit(User $user, Comment $comment)
+    {
+      return $user->id == $comment->user_id;
+    }
 
-  	public function update(User $user, Comment $comment)
-    	{
-    		return $user->id === $comment->user_id;
-    	}
+    public function update(User $user, Comment $comment)
+    {
+      return $user->id == $comment->user_id;
+    }
 
-}
+    public function delete(User $user, Comment $comment)
+    {
+      return $user->id == $comment->user_id;
+    }
+
+  }

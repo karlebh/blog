@@ -51,7 +51,12 @@ class CommentController extends Controller
         $comment = Comment::firstOrCreate($all);
         $comment->commentable()->increment('comments_count');
 
-        $comment->commentable->user->notify(new CommentNotification($comment->commentable));
+        $comment
+            ->commentable
+            ->user
+            ->notify(
+                new CommentNotification($comment->commentable /*the post*/, $comment->user)
+            );
 
         return back();  
     }

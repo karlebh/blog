@@ -4,8 +4,7 @@
 
 
 <div class="container">
-	@foreach($users as $user)
-		
+	@forelse($users as $user)
 		<div>
 			<div class="bg-white p-4 mb-4 ">
 				<div class="m-auto w-50">
@@ -27,7 +26,11 @@
 				</div>
 			</div>
 		</div>
-	@endforeach
+	@empty
+		<div class="m-5">
+			<h3>No User Except you</h3>
+		</div>
+	@endforelse
 
 	<div class="m-auto w-25">
 		

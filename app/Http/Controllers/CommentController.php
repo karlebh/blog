@@ -51,12 +51,15 @@ class CommentController extends Controller
         $comment = Comment::firstOrCreate($all);
         $comment->commentable()->increment('comments_count');
 
-        $comment
+        // don't notify if user comments on own post
+        if ($comment->commentable->user != $comment->user) {
+            $comment
             ->commentable
             ->user
             ->notify(
                 new CommentNotification($comment->commentable /*the post*/, $comment->user)
             );
+        }
 
         return back();  
     }

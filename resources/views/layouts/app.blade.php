@@ -99,9 +99,9 @@
                              style="background: #FF0000; color: white;"
                              >
                                  <strong>
-                                         {{auth()->user()->unreadNotifications->count()}}
-                                        </strong>
-                                    </span>
+                                     {{auth()->user()->unreadNotifications->count()}}
+                                </strong>
+                            </span>
                             @endif 
                             </a>
                         </li>

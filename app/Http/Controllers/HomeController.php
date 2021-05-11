@@ -54,7 +54,7 @@ class HomeController extends Controller
     public function users()
     {
         return view('users')->with(
-            'users', \App\User::select('id', 'username', 'gender', 'slug', 'created_at')
+            'users', \App\User::select('id', 'username', 'gender', 'created_at')
                 ->latest()
                 ->simplePaginate(20));
     }

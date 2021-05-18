@@ -55,9 +55,6 @@
 
 		<div class="well">
 			<div class="d-flex">
-				@can('create', $post)
-				<like class="mr-2" :id = "{{ $post->id }}" :liked = "{{ $isLiked ? 'true' : 'false' }}" :count = "{{ $post->likes()->count() }}"></like>
-				@endcan
 
 				@can('edit', $post)
 				<a class="mr-2" href="{{route('posts.edit', $post->slug)}}">edit</a>

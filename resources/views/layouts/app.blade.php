@@ -124,9 +124,7 @@
                                  <span class="caret"></span> Feed
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{route('likedPosts')}}">
-                                        Liked Posts
-                                    </a>
+                               
 
                                     <a class="dropdown-item" href="{{route('followedPosts')}}">
                                         Followed Posts

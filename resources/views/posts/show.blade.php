@@ -54,19 +54,6 @@
 	@endif
 	
 	<br />
-	
-	@can('view', $post)
-
-	<like
-
-		 :id = "{{ $post->id }}"
-		 :liked = "{{ $isLiked ? 'true' : 'false' }}"
-		 :count = "{{ $post->likes()->count() }}"
-	 >
-	 	
-	 </like>
-
-	@endcan	
 
 	@can('edit', $post)
 

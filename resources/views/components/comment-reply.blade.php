@@ -19,9 +19,6 @@
 
 	 	@can('view', $comment)
 
-			<like-comment  :id="{{ $comment->id }}" ></like-comment>
-
-
 		<a 
 			class="pl-3 pr-3 "
 			href="{{ route('reply.comment', $comment->id) }}"

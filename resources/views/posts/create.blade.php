@@ -4,18 +4,18 @@
 
 <div class="container">
   
+@if(count($categories) > 0)
 <form method="post" action="{!! route('posts.store') !!}" enctype="multipart/form-data" >
 
   @csrf
     
      <div class="form-group col-md-6">
-      <label for="category"></label>
+      <label for="category">Category</label>
       <select 
           name="category_id" 
           class="form-control @error('category_id') is-invalid @enderror" 
           value="{{ old('category_id') }}"
       >
-        <option>Select Category</option>
       @foreach($categories as $category)
         <option value="{{$category->id}}">
          {{$category->name}}
@@ -55,8 +55,8 @@
           @enderror
     </div>
 
-    <div class="form-group col-md-6">
-     <label for="desc">image</label>
+    <div class="form-group col-md-6 mb-3">
+     <label for="desc">image (Optional)</label>
 
      <input 
           type="file" 
@@ -79,11 +79,14 @@
     <div class="form-group col-md-6">
      <input type="submit" class="btn btn-success" value="Submit Post">
     </div>
-
-
-
-
 </form>
+@else 
+
+<div>
+  <a href="{{ route('category.create') }}">Click Here to create a category</a>
+</div>
+
+@endif
 </div>
 
 <!-- <create-post /> -->

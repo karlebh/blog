@@ -7,7 +7,7 @@
 	</div>
 </template>
 
-<script type="text/javascript">
+<script>
 	export default{
 
 		mounted(){
@@ -24,7 +24,6 @@
 				axios.get('/unreadNots')
 						.then((resp) => {
 							resp.data.forEach((nots) => this.$store.commit('addNots', nots))
-							
 						})
 			}
 		}

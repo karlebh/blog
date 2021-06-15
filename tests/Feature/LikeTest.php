@@ -9,7 +9,7 @@ use App\Like;
 use App\User;
 use App\Post;
 
-class likeTest extends TestCase
+class LikeTest extends TestCase
 {
 	use RefreshDatabase;
 

@@ -21,7 +21,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::paginate(25);
+        $categories = Category::with('posts')
+                        ->withCount('posts')
+                        ->paginate(25);
 
         return view('category.index', compact('categories'));
 

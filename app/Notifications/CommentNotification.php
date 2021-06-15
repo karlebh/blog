@@ -7,21 +7,17 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class PostNoty extends Notification implements ShouldQueue
+class CommentNotification extends Notification
 {
-    use Queueable;
-
     public $post;
-    /**
-     * Create a new notification instance.
-     *
-     * @return void
-     */
-    public function __construct($post = null)
+
+    public $commenter;
+
+    public function __construct($post, $commenter)
     {
         $this->post = $post;
+        $this->commenter = $commenter;
     }
-
     /**
      * Get the notification's delivery channels.
      *
@@ -30,21 +26,24 @@ class PostNoty extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['broadcast', 'database'];
+        return ['database'];
     }
 
-    
     /**
      * Get the array representation of the notification.
      *
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toArray($notifiable)
+    
+
+    public function toDatabase($notifiable)
     {
         return [
-            'name' => $post->users()->slug,
-            "message" => "New Post created",
+            'postSlug' => $this->post->slug,
+            'postTitle' => $this->post->title,
+            'commenterUsername' => $this->commenter->username,
         ];
     }
 }
+

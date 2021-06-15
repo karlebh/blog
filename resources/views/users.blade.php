@@ -4,16 +4,12 @@
 
 
 <div class="container">
-	
-		
-
-	@foreach($users as $user)
-		
+	@forelse($users as $user)
 		<div>
 			<div class="bg-white p-4 mb-4 ">
 				<div class="m-auto w-50">
 					
-				<a	href="{{ route('profile.show', $user->slug) }}">
+				<a	href="{{ route('profile.show', $user->username) }}">
 					<strong>
 						
 					{{$user->username}}
@@ -27,15 +23,14 @@
 						{{$user->created_at->diffForHumans()}}
 					</strong>
 				</span>
-
-				@if(auth()->user()->id != $user->id)
-					<friending class="pt-4" :userId=" {{ $user->id}} "></friending>
-				@endif
-
-					</div>
+				</div>
 			</div>
 		</div>
-	@endforeach
+	@empty
+		<div class="m-5">
+			<h3>No User Except you</h3>
+		</div>
+	@endforelse
 
 	<div class="m-auto w-25">
 		

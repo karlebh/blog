@@ -1,22 +1,8 @@
 <template>
   
   <div>
-    <button
-      v-if="isLiked"
-      @click.prevent="unlike"
-    >
-      unlike
-      
-    </button> 
-
-      <button
-      v-else
-      @click.prevent="like"
-    >
-      like
-      
-    </button>
-
+    <button v-if="isLiked" @click.prevent="unlike">unlike</button> 
+    <button v-else @click.prevent="like">like</button>
     {{likeCount}}
   </div>
 
@@ -26,14 +12,14 @@
     export default{
       props: ['id', 'count', 'liked'],
 
-      data(){
-        return{
+      data() {
+        return {
             ids : this.id,
             counts : this.count,
             likeds : this.liked,
         }
       },
-      mounted(){
+      mounted() {
             return this.isLiked = this.likeds ? true : false
       },
       computed:{
@@ -46,37 +32,26 @@
           }
         },
 
-        likeCount(){
-          if(this.counts < 1){
+        likeCount() {
+          if (this.counts < 1) {
             return;
           }
           return this.counts
         }
       },
       methods: {
-     
         like(){
-
             axios.post('/like', {id: this.id})
-                .then( response => {
-                this.liked = true;
-                this.counts = this.count + 1//this is responsible for normal like count
-            });
+            this.liked = ! this.liked
+            this.counts++
         },
 
         unlike() {
-
             axios.post('/unlike', {id: this.id})
-                .then(response => {
-                this.liked = false;
-                this.counts -= 1 //this is responsible for normal like count
-            });
+            this.liked = !this.liked
+            this.counts--
           }
-       },
-       watch:{
-          
-    }
-
+       }
   }
 </script>
 

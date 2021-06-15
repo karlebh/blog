@@ -1,8 +1,6 @@
 <div class="container">
 	<div class="text-center">
-
 		<h4 class="text-success d-inline-block mr-3"> {{$title}} </h4>
-
 	</div>
     
 	
@@ -18,8 +16,8 @@
 				Posted  
 				 	<strong>
 				 	by 
-					<a href="{{ route('profile.show', $post->user->slug) }}">
-					 	{{ $post->user->name }}
+					<a href="{{ route('profile.show', $post->user->username) }}">
+					 	{{ $post->user->username }}
 					</a>
 				 	</strong>
 

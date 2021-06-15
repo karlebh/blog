@@ -2,17 +2,14 @@
 
 namespace App;
 
-
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Auth\Passwords\CanResetPassword;
-use App\Traits\Friendable;
 use Laravel\Scout\Searchable;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable
 {
-    use Searchable, Notifiable, Friendable, CanResetPassword;
+    use Searchable, Notifiable, CanResetPassword;
 
     /**
      * The attributes that are mass assignable.
@@ -39,6 +36,11 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function searchableAs()
+    {
+        return 'users_index';
+    }
 
     public function toSearchableArray()
     {
@@ -84,12 +86,17 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public static function boot()
     {
-        parent::boot();
+      parent::boot();
 
-        static::created(function($user){
-            $user->profile()->create([
-              'user_id' => $user->id,  
-            ]);
-        });
+      static::created(function ($user) {
+        $user->profile()->create(['user_id' => $user->id]);
+      });
+    }
+
+    public function scopeAdmin($query)
+    {
+      $query->roles()
+        ->where('name', 'admin')
+        ->orWhere('name', 'moderator');
     }
   }

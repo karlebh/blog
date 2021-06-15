@@ -7,8 +7,12 @@ use App\User;
 
 class Profile extends Model
 {
-	protected $fillable = ['user_id', 'slug'];
+	protected $guarded = [];
 
+	public function getRouteKeyName()
+	{
+		return 'username';
+	}
 	
     public function user()
     {

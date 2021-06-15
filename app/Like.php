@@ -9,7 +9,6 @@ class Like extends Model
 {
 
     protected $guarded = [];
-   
 
     public function user()
     {
@@ -20,6 +19,4 @@ class Like extends Model
     {
     	return $this->morphTo();
     }
-
-
 }

@@ -24,7 +24,7 @@ class PostController extends Controller
     public function index()
     {
 
-        $posts = Post::OrderBy('created_at', 'desc')->paginate(30);
+        $posts = Post::with('comments')->OrderBy('created_at', 'desc')->paginate(30);
         
         // Cache::put('users', $cahe)
         // $posts = Cache::get('users');
@@ -45,7 +45,7 @@ class PostController extends Controller
    {
         // $this->authorize('update', Post::class);
 
-        $data = request()->validate([
+        $data = $request->validate([
             'category_id' => 'required',
             'title' => 'required|unique:posts,title|min:2|max:255|string',
             'desc' => 'required|string|min:2|max:5000',
@@ -53,7 +53,7 @@ class PostController extends Controller
         ]);
 
         if($request->hasFile('img')){
-        $imagePath = $request->img->store('images', 'public');
+            $imagePath = $request->img->store('images', 'public');
         }
 
         $post = auth()->user()->posts()->firstOrCreate([

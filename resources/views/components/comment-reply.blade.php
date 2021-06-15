@@ -5,7 +5,7 @@
 
 		<div class="card-body">
 			<div class="card-title">
-				By <a href="/profile/{{$comment->user->slug}}">{{ $comment->user->name }} </a>
+				By <a href="/profile/{{$comment->user->username}}">{{ $comment->user->username }} </a>
 
 				 <span></span> {{$comment->created_at->diffForHumans()}}
 				 <a href="" style="font-size: 20px;" class="ml-2 text-success">#</a>
@@ -18,9 +18,6 @@
 		 <div class="row pl-4">
 
 	 	@can('view', $comment)
-
-			<like-comment  :id="{{ $comment->id }}" ></like-comment>
-
 
 		<a 
 			class="pl-3 pr-3 "

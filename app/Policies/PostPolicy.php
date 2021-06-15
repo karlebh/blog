@@ -9,18 +9,6 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 class PostPolicy
 {
     use HandlesAuthorization;
-
-    /**
-     * Determine whether the user can view any posts.
-     *
-     * @param  \App\User  $user
-     * @return mixed
-     */
-    public function viewAny(User $user)
-    {
-        // return $user->id === 
-    }
-
     /**
      * Determine whether the user can view the post.
      *
@@ -35,7 +23,7 @@ class PostPolicy
 
     public function edit(User $user, Post $post)
     {
-        return $user->id === $post->user_id;
+        return $user->id == $post->user_id;
     }
 
     /**
@@ -58,8 +46,7 @@ class PostPolicy
      */
     public function update(User $user, Post $post)
     {
-        // return $user->id === $post->user_id;
-         return true;
+        return $user->id == $post->user_id;
     }
 
     /**
@@ -71,8 +58,7 @@ class PostPolicy
      */
     public function delete(User $user, Post $post)
     {
-        // return $user->id === $post->user_id;
-         return true;
+        return $user->id == $post->user_id;
     }
 
     /**

@@ -8,12 +8,10 @@ class Comment extends Model
 {
     protected $guarded = [];
 
-
     public function user()
     {
     	return $this->belongsTo(User::class);
     }
-
 
     public function likes()
     {
@@ -29,12 +27,4 @@ class Comment extends Model
     {
     	return $this->morphTo();
     }
-
-
-    public function path()
-    {
-        $comment = $this->commentable->comments->pluck('id')->search($this->id) + 1;
-        
-    }
-
 }

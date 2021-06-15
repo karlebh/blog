@@ -1,14 +1,9 @@
 <template>
 	<div>
 		<div>
-			<button @click="toggle"  v-text="buttonText" >
+			<button @click="toggle"  v-text="buttonText"></button>
 				
-			</button>
-				
-			<span v-if="count > 0" class="block">
-				{{count}}
-			</span>
-
+			<span v-if="count > 0" class="block">{{count}}</span>
 		</div>
 	</div>
 </template>
@@ -41,31 +36,22 @@
 		},
 
 		methods:{
-			like()
-			{	
+			like() {	
 				axios.post('/likeComment', {id: this.id})
-						.then(response => 
-									{
-									this.status = ! this.status
-									this.count = this.count + 1
-								})
+					this.status = ! this.status
+					this.count = this.count + 1
 			},
-			unlike()
-			{ 
+
+			unlike() { 
 				axios.post('/unlikeComment', {id: this.id})
-						.then(response => {
-									this.status = ! this.status
-									this.count = this.count - 1
-							})
+					this.status = ! this.status
+					this.count = this.count - 1
 			},
-			check()
-			{
+
+			check() {
 				axios.post('/checkComment', {id: this.id})
-						.then(response => 
-								{
-									this.status = response.data[0]
-									this.count = response.data[1]
-								})
+					this.status = response.data[0]
+					this.count = response.data[1]
 			},
 			toggle(){
 				(this.status) ? this.unlike() : this.like();

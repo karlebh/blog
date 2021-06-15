@@ -30,29 +30,31 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function nots()
+    public function notifications()
     {
         auth()->user()->unreadNotifications->markAsRead();
         $nots = auth()->user()->notifications;
-        
+
         return view('notify', compact('nots'));
     }
 
     public function search(Request $request)
     {
         if(strlen($request->q) < 3){
+        	session()->flash('error', 'You only search for 3 words and above!');
             return back()->with('q', $request->q);
         }
+        //$request->validate(['q' => ['string']);
         $query = $request->q;
 
-        $results = \App\Post::search($query)->paginate();
+        $results = \App\Post::search($query)->get();
         return view('search', compact('results'));
     }
     
     public function users()
     {
         return view('users')->with(
-            'users', \App\User::select('id', 'username', 'gender', 'slug', 'created_at')
+            'users', \App\User::select('id', 'username', 'gender', 'created_at')
                 ->latest()
                 ->simplePaginate(20));
     }
